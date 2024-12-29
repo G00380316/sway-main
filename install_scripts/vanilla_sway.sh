@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Main list of packages
 packages=(
@@ -20,7 +20,7 @@ read_base_packages() {
 }
 
 # Read common packages from file
-read_base_packages "$HOME/sway/install_scripts/base_packages.txt"
+read_base_packages "$HOME/ArchDispManConf/install_scripts/base_packages.txt"
 
 # Function to install packages if they are not already installed
 install_packages() {

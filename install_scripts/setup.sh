@@ -1,15 +1,15 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Function to install vanilla sway
 install_vanilla_sway() {
     echo "Installing vanilla sway..."
-    zsh ~/sway/install_scripts/vanilla_sway.sh
+    bash ~/ArchDispManConf/install_scripts/vanilla_sway.sh
 }
 
 # Function to install customized swayWM
 install_custom_sway() {
     echo "Installing G00380316 customized sway..."
-    zsh ~/sway/install_scripts/custom_sway.sh
+    bash ~/ArchDispManConf/install_scripts/custom_sway.sh
 }
 
 # Function to prompt user for installation choice (vanilla or customized)

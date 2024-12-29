@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Function to check if rofi is already installed
 check_rofi_installed() {

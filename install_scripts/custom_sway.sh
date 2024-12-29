@@ -1,9 +1,9 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Main list of packages
 packages=(
     "sway"
-    "waybar" 
+    "waybar"
     "swaylock"
     "swayidle"
     "swaybg"
@@ -22,7 +22,7 @@ read_common_packages() {
 }
 
 # Read common packages from file
-read_common_packages "$HOME/sway/install_scripts/common_packages.txt"
+read_common_packages "$HOME/ArchDispManConf/install_scripts/common_packages.txt"
 
 # Function to install packages if they are not already installed
 install_packages() {
@@ -63,22 +63,22 @@ xdg-user-dirs-update
 mkdir -p ~/Screenshots/
 
 # Install Nerd Fonts
-zsh ~/sway/install_scripts/nerdfonts.sh
+bash ~/ArchDispManConf/install_scripts/nerdfonts.sh
 
 # Install NWG Look
-zsh ~/sway/install_scripts/nwg-look
+bash ~/ArchDispManConf/install_scripts/nwg-look
 
 # Install Rofi-Wayland
-zsh ~/sway/install_scripts/rofi-wayland
+bash ~/ArchDispManConf/install_scripts/rofi-wayland
 
 # Move custom configuration files
-\cp -r ~/sway/configs/scripts/ ~
-\cp -r ~/sway/configs/sway/ ~/.config/
-\cp -r ~/sway/configs/swaync/ ~/.config/
-\cp -r ~/sway/configs/waybar/ ~/.config/
-\cp -r ~/sway/configs/rofi/ ~/.config/
-\cp -r ~/sway/configs/kitty/ ~/.config/
-\cp -r ~/sway/configs/backgrounds/ ~/.config/
+\cp -r ~/ArchDispManConf/configs/scripts/ ~
+\cp -r ~/ArchDispManConf/configs/sway/ ~/.config/
+\cp -r ~/ArchDispManConf/configs/swaync/ ~/.config/
+\cp -r ~/ArchDispManConf/configs/waybar/ ~/.config/
+\cp -r ~/ArchDispManConf/configs/rofi/ ~/.config/
+\cp -r ~/ArchDispManConf/configs/kitty/ ~/.config/
+\cp -r ~/ArchDispManConf/configs/backgrounds/ ~/.config/
 
 # Add GTK theme and icon theme
-zsh ~/sway/colorschemes/purple.sh
+bash ~/ArchDispManConf/colorschemes/purple.sh

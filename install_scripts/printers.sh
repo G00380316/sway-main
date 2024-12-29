@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Function to detect package manager (apt for Debian/Ubuntu, pacman for Arch)
 detect_package_manager() {

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Function to check if a service is active and enabled
 service_active_and_enabled() {

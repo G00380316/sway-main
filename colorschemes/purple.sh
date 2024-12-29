@@ -42,4 +42,4 @@ else
 fi
 
 
-bash ~/sway/colorschemes/update_gtk_settings.sh
+bash ~/ArchDispManConf/colorschemes/update_gtk_settings.sh
