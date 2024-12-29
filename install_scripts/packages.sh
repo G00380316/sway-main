@@ -2,7 +2,7 @@
 
 # Function to install selected packages using pacman
 install_packages() {
-    sudo pacman -S --noconfirm --needed "$@"
+    sudo pacman -S --noconfirm "$@"
 }
 
 # File Managers

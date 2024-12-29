@@ -18,7 +18,7 @@ cd "$temp_dir"
 
 # Install dependencies using pacman
 echo "Installing dependencies..."
-sudo pacman -S --noconfirm --needed \
+sudo pacman -S --noconfirm \
     bison flex ninja meson cmake cmake-extras \
     libxcb-xkb-dev libxcb-util0-dev libxkbcommon-x11-dev \
     libxcb-ewmh-dev libxcb-icccm4-dev libxcb-randr0-dev \

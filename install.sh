@@ -4,8 +4,8 @@
 if ! command -v git &> /dev/null; then
     echo "Git is not installed. Attempting to install Git..."
 
-    # Use apt to install git
-    if command -v apt &> /dev/null; then
+    # Use pacman to install git
+    if command -v pacman &> /dev/null; then
         sudo pacman -Sy
         sudo pacman -S git --noconfirm
     else
@@ -21,12 +21,34 @@ if ! command -v git &> /dev/null; then
 fi
 
 echo "Git is installed. Continuing with the script..."
-# Add further commands here after ensuring Git is installed
+
+# Check if git is installed
+if ! command -v yay &> /dev/null; then
+    echo "Yay is not installed. Attempting to install Yay..."
+
+    # Use pacman to install yay
+    if command -v pacman &> /dev/null; then
+        git clone https://aur.archlinux.org/yay.git
+        mv yay $HOME/.config
+        cd $HOME/.config/yay
+        makepkg -si --noconfirm
+    else
+        echo "Cannot install Yay automatically using pacman. Please install Yay manually and run this script again."
+        exit 1
+    fi
+
+    # Check again if git is installed after attempting to install
+    if ! command -v yay &> /dev/null; then
+        echo "Yay installation failed. Please install Yay manually and run this script again."
+        exit 1
+    fi
+fi
 
 # Clone the repository into the home directory
 git clone https://github.com/G00380316/ArchDispManConf.git
 
 clear
+
 echo "
  +-+-+-+-+-+-+-+-+-+-+-+-+-+
  | | |G|0|0|3|8|0|3|1|6| | |
@@ -41,30 +63,23 @@ echo "
 # Run the setup script
 bash ~/ArchDispManConf/install_scripts/setup.sh
 
-clear
+bash ~/ArchDispManConf/install_scripts/dev.sh
 
 # Run the extra packages
 bash ~/ArchDispManConf/install_scripts/packages.sh
-
-clear
 
 echo "Make sure a Display Manager is installed"
 
 # make sure gdm3 is installed
 bash ~/ArchDispManConf/install_scripts/gdm.sh
 
-clear
-
 # add bashrc question
 bash ~/ArchDispManConf/install_scripts/add_bashrc.sh
 
-clear
-
 bash ~/ArchDispManConf/install_scripts/printers.sh
 
-clear
-
 bash ~/ArchDispManConf/install_scripts/bluetooth.sh
+
 sudo pacman -Rns $(pacman -Qdtq)
 yay -Rns $(yay -Qdtq)
 

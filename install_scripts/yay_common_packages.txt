@@ -1,0 +1,16 @@
+geany
+geany-plugins
+betterbird-bin
+onedrive-abraunegg
+fzf 
+bat
+tofi
+arc-gtx-theme
+papirus-icon-theme
+microsoft-edge-stable-bin
+google-chrome
+anki-bin
+swww
+android-studio
+qimgv
+

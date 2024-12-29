@@ -10,6 +10,7 @@ install_vanilla_sway() {
 install_custom_sway() {
     echo "Installing G00380316 customized sway..."
     bash ~/ArchDispManConf/install_scripts/custom_sway.sh
+    bash ~/ArchDispManConf/install_scripts/preinstall.sh
 }
 
 # Function to prompt user for installation choice (vanilla or customized)

@@ -24,8 +24,18 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
     echo "Installing printing services..."
     if [ "$PACKAGE_MANAGER" = "pacman" ]; then
         # Arch-based systems
-        sudo pacman -S --noconfirm cups system-config-printer simple-scan
-        sudo systemctl enable cups.service
+        sudo pacman -S --noconfirm reflector
+        sudo reflector --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+        sudo pacman -Syy
+        sudo pacman -S --noconfirm splix cups cups-filters
+        sudo systemctl enable --now cups.service
+        #Add the printer:
+
+        #    Open a browser and go to http://localhost:631 to access the CUPS web interface.
+        #    Go to the Administration tab, then click Add Printer.
+        #    Follow the prompts to select your Samsung printer model, which should now be listed thanks to the splix driver.
+
+        #Test the printer: After adding it, print a test page to confirm it’s set up correctly.
     elif [ "$PACKAGE_MANAGER" = "apt" ]; then
         # Debian-based systems
         sudo apt install -y cups system-config-printer simple-scan
