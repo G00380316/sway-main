@@ -1,0 +1,28 @@
+#!/bin/bash
+
+function send_notification() {
+    volume=$(pamixer --get-volume)
+    swaymsg -t command bar-msg 'show_notification' "{\"app\":\"changevolume\",\"id\":9993,\"urgent\":\"low\",\"icon\":\"volume-$1\",\"text\":\"Volume: ${volume}%\",\"timeout\":2000}"
+}
+
+case $1 in
+up)
+    # Set the volume on (if it was muted)
+    pamixer -u
+    pamixer -i 2 --allow-boost
+    send_notification $1
+    ;;
+down)
+    pamixer -u
+    pamixer -d 2 --allow-boost
+    send_notification $1
+    ;;
+mute)
+    pamixer -t
+    if $(pamixer --get-mute); then
+        swaymsg -t command bar-msg 'show_notification' "{\"app\":\"changevolume\",\"id\":9993,\"urgent\":\"low\",\"icon\":\"volume-mute\",\"text\":\"Muted\",\"timeout\":2000}"
+    else
+        send_notification up
+    fi
+    ;;
+esac
