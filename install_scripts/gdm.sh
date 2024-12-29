@@ -37,7 +37,7 @@ detect_package_manager
 
 # Check if GDM3 is installed and enabled
 check_gdm() {
-    service_active_and_enabled gdm3
+    service_active_and_enabled gdm
 }
 
 # Check if SDDM is installed and enabled
@@ -70,6 +70,12 @@ ask_install_gdm() {
     read -p "GDM3 is recommended. Install? (y/n): " answer
     case $answer in
         [yY])
+            sudo pacman -R --noconfirm ly
+            sudo pacman -R --noconfirm slim
+            sudo pacman -R --noconfirm lxdm
+            sudo pacman -R --noconfirm sddm
+            sudo pacman -R --noconfirm lightdm
+
             install_gdm
             ;;
         *)
@@ -82,8 +88,10 @@ ask_install_gdm() {
 # Function to install and enable GDM3
 install_gdm() {
     echo "Installing minimal GDM3 (recommended)..."
-    sudo $PACKAGE_COMMAND gdm3
-    sudo systemctl enable gdm3
+    sudo pacman -Rdd --noconfirm poppler-qt6
+    sudo $PACKAGE_COMMAND gdm
+    sudo systemctl enable gdm
+    sudo pacman -S --noconfirm poppler-qt6
     echo "GDM3 has been installed and enabled."
 }
 

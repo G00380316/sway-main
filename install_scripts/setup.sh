@@ -13,6 +13,19 @@ install_custom_sway() {
     bash ~/ArchDispManConf/install_scripts/preinstall.sh
 }
 
+# Function to install vanilla sway
+install_vanilla_hyprland() {
+    echo "Installing vanilla hyprland..."
+    bash ~/ArchDispManConf/install_scripts/vanilla_hyprland.sh
+}
+
+# Function to install customized swayWM
+install_custom_hyprland() {
+    echo "Installing G00380316 customized hyprland..."
+    bash ~/ArchDispManConf/install_scripts/custom_hyprland.sh
+    bash ~/ArchDispManConf/install_scripts/preinstall.sh
+}
+
 # Function to prompt user for installation choice (vanilla or customized)
 prompt_installation_choice() {
     local wm_name="$1"
@@ -51,7 +64,7 @@ prompt_and_store_choice() {
 }
 
 # Prompt for swayWM installation
-prompt_and_store_choice "sway"
+prompt_and_store_choice "sway" || "hyprland"
 
 
 # Install based on user choices stored in the array

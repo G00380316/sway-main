@@ -3,22 +3,21 @@
     # Clone Neovim Configuration Repository
     echo "Cloning Neovim configuration..."
     git clone https://github.com/G00380316/nvim.git
-    mv nvim $HOME/.config
+    mv ~/nvim $HOME/.config
 
     echo "Cloning tpm for tmux configuration..."
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
     cd $HOME
     dircolors -p > ~/.dircolors
-    mkdir -p Coding/Projects
+    mkdir -p ~/Coding/Projects
 
     # Move application config folders to .config
     echo "Moving configuration folders to .config directory..."
     cd ArchConfig
-    cp -r ../configs/.zshenv "$HOME"
-    cp -r ../configs/.zshrc "$HOME"
-    cp -r ../configs/.p10k.zsh "$HOME"
-kkk
+    cp -r ~/ArchDispManConf/configs/.zshenv "$HOME"
+    cp -r ~/ArchDispManConf/configs/.zshrc "$HOME"
+    cp -r ~/ArchDispManConf/configs/.p10k.zsh "$HOME"
 
 
 echo "Installing JetBrains Nerd Font..."
@@ -31,12 +30,12 @@ echo "Installing JetBrains Nerd Font..."
     # Step 2: Extract the Font
     echo "Extracting the font..."
     unzip "$FONT_ZIP" -d JetBrainsMono
+    rm -rf "$FONT_ZIP"
 
     # Step 3: Install the Font
     echo "Installing the font..."
     cd $HOME/.local/share
     mkdir -p fonts
-    cd $HOME/ArchConfig
     mv JetBrainsMono $HOME/.local/share/fonts/
     fc-cache -fv
 

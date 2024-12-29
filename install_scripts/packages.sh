@@ -1,11 +1,40 @@
 #!/bin/bash
 
-# Function to install selected packages using pacman
+# Function to remove blocking dependencies and install packages
 install_packages() {
-    sudo pacman -S --noconfirm "$@"
+    local packages=("$@")
+
+    for package in "${packages[@]}"; do
+        echo "Processing $package..."
+        # Remove conflicting dependencies
+        local blocking_deps=()
+        for dep in $(pactree -r "$package" 2>/dev/null | tail -n +2); do
+            if pacman -Qi "$dep" &>/dev/null; then
+                blocking_deps+=("$dep")
+            fi
+        done
+
+        if [ ${#blocking_deps[@]} -gt 0 ]; then
+            echo "Removing blocking dependencies: ${blocking_deps[*]}"
+            sudo pacman -Rns --noconfirm "${blocking_deps[@]}"
+        fi
+
+        # Install the package
+        echo "Installing $package..."
+        if ! sudo pacman -S --noconfirm "$package"; then
+            echo "Failed to install $package. Skipping..."
+            continue
+        fi
+
+        # Reinstall previously removed dependencies
+        if [ ${#blocking_deps[@]} -gt 0 ]; then
+            echo "Reinstalling dependencies: ${blocking_deps[*]}"
+            sudo pacman -S --noconfirm "${blocking_deps[@]}"
+        fi
+    done
 }
 
-# File Managers
+# Main list of packages
 file_managers=("thunar" "pcmanfm" "krusader" "nautilus" "nemo" "dolphin" "ranger" "nnn" "lf")
 
 echo "Choose File Managers to install (space-separated list, e.g., 1 3 5):"
@@ -101,16 +130,20 @@ other_packages=( \
     "wlr-randr" "qbittorrent"
 )
 
-echo "Choose other packages to install (space-separated list, e.g., 1 3 5):"
+echo "Choose other packages to install (space-separated list, e.g., 1 3 5, or type 'all' to install all):"
 for i in "${!other_packages[@]}"; do
     echo "$((i+1)). ${other_packages[i]}"
 done
 read -rp "Selection: " other_packages_selection
 
 selected_other_packages=()
-for index in $other_packages_selection; do
-    selected_other_packages+=("${other_packages[index-1]}")
-done
+if [[ "$other_packages_selection" == "all" ]]; then
+    selected_other_packages=("${other_packages[@]}")
+else
+    for index in $other_packages_selection; do
+        selected_other_packages+=("${other_packages[index-1]}")
+    done
+fi
 
 # Install selected packages
 install_packages "${selected_file_managers[@]}" "${selected_graphics[@]}" "${selected_terminals[@]}" \
