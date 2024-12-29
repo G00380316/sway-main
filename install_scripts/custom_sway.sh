@@ -10,6 +10,8 @@ packages=(
     "swaync"
 )
 
+yay_packages=()
+
 # Function to read common packages from a file
 read_common_packages() {
     local common_file="$1"
@@ -94,11 +96,16 @@ install_packages() {
 install_packages "${packages[@]}"
 yay_install_packages "${yay_packages[@]}"
 
-# Enable necessary system services
+# Enable/Disable necessary system services
+sudo pacman -Rns --noconfirm pulseaudio pulseaudio-alsa
 systemctl --user daemon-reload
 systemctl --user restart xdg-desktop-portal-wlr.service
 sudo systemctl enable avahi-daemon
 sudo systemctl enable acpid
+sudo systemctl --user enable --now pipewire pipewire-pulse
+xdg-mime default thunar.desktop inode/directory application/x-gnome-saved-search
+xfdesktop --load
+sudo systemctl enable --now tlp
 
 # Update user directories
 xdg-user-dirs-update

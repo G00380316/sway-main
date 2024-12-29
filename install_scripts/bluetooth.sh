@@ -24,7 +24,7 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
     echo "Installing Bluetooth services..."
     if [ "$PACKAGE_MANAGER" = "pacman" ]; then
         # Arch-based systems
-        sudo pacman -S --noconfirm bluez blueman
+        sudo pacman -S --noconfirm bluez blueman bluez-utils
         sudo systemctl enable bluetooth
     elif [ "$PACKAGE_MANAGER" = "apt" ]; then
         # Debian-based systems
