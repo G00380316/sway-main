@@ -20,7 +20,7 @@ for index in $file_manager_selection; do
 done
 
 # Graphics
-graphics=("gimp" "flameshot" "eog" "sxiv" "qimgv" "inkscape" "scrot")
+graphics=("gimp" "flameshot" "eog" "sxiv" "qimgv" "inkscape" "scrot" "feh")
 
 echo "Choose graphics applications to install (space-separated list, e.g., 1 3 5):"
 for i in "${!graphics[@]}"; do
@@ -34,7 +34,7 @@ for index in $graphics_selection; do
 done
 
 # Terminals
-terminals=("alacritty" "gnome-terminal" "kitty" "konsole" "terminator" "xfce4-terminal" )
+terminals=("alacritty" "gnome-terminal" "kitty" "konsole" "terminator" "xfce4-terminal")
 
 echo "Choose Terminals to install (space-separated list, e.g., 1 3):"
 for i in "${!terminals[@]}"; do
@@ -62,7 +62,7 @@ for index in $text_editor_selection; do
 done
 
 # Multimedia
-multimedia=("mpv" "vlc" "audacity" "kdenlive" "obs-studio" "rhythmbox" "ncmpcpp" "mkvtoolnix-gui")
+multimedia=("mpv" "vlc" "audacity" "kdenlive" "obs-studio" "rhythmbox" "ncmpcpp" "mkvtoolnix-gui" "ffmpeg" "yt-dlp")
 
 echo "Choose Multimedia applications to install (space-separated list, e.g., 1 3 5):"
 for i in "${!multimedia[@]}"; do
@@ -75,8 +75,13 @@ for index in $multimedia_selection; do
     selected_multimedia+=("${multimedia[index-1]}")
 done
 
-# utilities
-utilities=( "gparted" "gnome-disk-utility" "neofetch" "nitrogen" "numlockx" "galculator" "cpu-x" "udns-utils" "whois" "curl" "tree" "btop" "htop" "bat" "brightnessctl" "redshift" ) 
+# Utilities
+utilities=( \
+    "gparted" "gnome-disk-utility" "neofetch" "nitrogen" "numlockx" "galculator" "cpu-x" "udns-utils" \
+    "whois" "curl" "tree" "btop" "htop" "bat" "brightnessctl" "redshift" "i7z" "bleachbit" \
+    "gdisk" "ntfs-3g" "dosfstools" "xdg-desktop-portal-wlr" "v4l2loopback-dkms" "lm_sensors" "fd" "ripgrep" \
+    "pavucontrol" "wl-clipboard" "bc"
+)
 
 echo "Choose utilities applications to install (space-separated list, e.g., 1 3 5):"
 for i in "${!utilities[@]}"; do
@@ -89,5 +94,24 @@ for index in $utilities_selection; do
     selected_utilities+=("${utilities[index-1]}")
 done
 
+# Other Packages
+other_packages=( \
+    "unrar" "freetype2" "harfbuzz" "cairo" "pango" "wayland" "libxkbcommon" "meson" "scdoc" "wayland-protocols" \
+    "dhclient" "usbmuxd" "ifuse" "libimobiledevice" "gvfs-mtp" "mtpfs" "zathura" "zathura-pdf-mupdf" \
+    "wlr-randr" "qbittorrent"
+)
+
+echo "Choose other packages to install (space-separated list, e.g., 1 3 5):"
+for i in "${!other_packages[@]}"; do
+    echo "$((i+1)). ${other_packages[i]}"
+done
+read -rp "Selection: " other_packages_selection
+
+selected_other_packages=()
+for index in $other_packages_selection; do
+    selected_other_packages+=("${other_packages[index-1]}")
+done
+
 # Install selected packages
-install_packages "${selected_file_managers[@]}" "${selected_graphics[@]}" "${selected_terminals[@]}" "${selected_text_editors[@]}" "${selected_multimedia[@]}" "${selected_utilities[@]}"
+install_packages "${selected_file_managers[@]}" "${selected_graphics[@]}" "${selected_terminals[@]}" \
+    "${selected_text_editors[@]}" "${selected_multimedia[@]}" "${selected_utilities[@]}" "${selected_other_packages[@]}"

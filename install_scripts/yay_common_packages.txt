@@ -13,4 +13,3 @@ anki-bin
 swww
 android-studio
 qimgv
-
