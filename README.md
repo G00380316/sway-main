@@ -8,12 +8,12 @@ Within the install.sh file, you can choose to install the following window manag
 
 * sway
 
-**User can select between vanilla(non-customized) and completely customized (my personal customization)** 
+**User can select between vanilla(non-customized) and completely customized (my personal customization)**
 
 # Installation
 
-``` 
-wget https://github.com/G00380316/sway/raw/main/install.sh
+```
+wget https://github.com/G00380316/ArchDispManConf/raw/main/install.sh
 
 chmod +x install.sh
 
