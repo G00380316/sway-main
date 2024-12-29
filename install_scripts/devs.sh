@@ -15,9 +15,9 @@
     # Move application config folders to .config
     echo "Moving configuration folders to .config directory..."
     cd ArchConfig
-    mv .zshenv "$HOME"
-    mv .zshrc "$HOME"
-    mv .p10k.zsh "$HOME"
+    cp -r ../configs/.zshenv "$HOME"
+    cp -r ../configs/.zshrc "$HOME"
+    cp -r ../configs/.p10k.zsh "$HOME"
 kkk
 
 
@@ -102,10 +102,8 @@ sudo pacman -S --noconfirm php lua
 echo "Installing Neofetch and Neovim"
 sudo pacman -S --noconfirm neovim neofetch
 
-
 # Productivity
 sudo pacman -S --noconfirm zoxide tmux
-
 
 # Install Flatpak and Obsidian,Vesktop,Postman,DbGate,...etc
 echo "Installing Flatpak and Obsidian..."

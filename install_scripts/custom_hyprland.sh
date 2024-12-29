@@ -2,11 +2,10 @@
 
 # Main list of packages
 packages=(
-    "sway"
+    "hyprland"
     "waybar"
     "swaylock"
     "swayidle"
-    "swaybg"
     "swaync"
 )
 

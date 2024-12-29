@@ -82,7 +82,7 @@ ask_install_gdm() {
 # Function to install and enable GDM3
 install_gdm() {
     echo "Installing minimal GDM3 (recommended)..."
-    sudo $PACKAGE_COMMAND --no-install-recommends gdm3
+    sudo $PACKAGE_COMMAND gdm3
     sudo systemctl enable gdm3
     echo "GDM3 has been installed and enabled."
 }
@@ -90,7 +90,7 @@ install_gdm() {
 # Function to install and enable SDDM
 install_sddm() {
     echo "Installing minimal SDDM..."
-    sudo $PACKAGE_COMMAND --no-install-recommends sddm
+    sudo $PACKAGE_COMMAND sddm
     sudo systemctl enable sddm
     echo "SDDM has been installed and enabled."
 }
@@ -106,7 +106,7 @@ install_lightdm() {
 # Function to install and enable LXDM
 install_lxdm() {
     echo "Installing LXDM..."
-    sudo $PACKAGE_COMMAND --no-install-recommends lxdm
+    sudo $PACKAGE_COMMAND lxdm
     sudo systemctl enable lxdm
     echo "LXDM has been installed and enabled."
 }

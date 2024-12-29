@@ -77,6 +77,26 @@ for wm_name in "${!choices[@]}"; do
                     ;;
             esac
             ;;
+        3)
+            case "$wm_name" in
+                "hyprland")
+                    install_vanilla_hyprland
+                    ;;
+                *)
+                    echo "Installation function not defined for $wm_name"
+                    ;;
+            esac
+            ;;
+        4)
+            case "$wm_name" in
+                "hyprland")
+                    install_custom_hyprland
+                    ;;
+                *)
+                    echo "Installation function not defined for $wm_name"
+                    ;;
+            esac
+            ;;
         *)
             echo "Skipping $wm_name installation..."
             ;;

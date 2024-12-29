@@ -34,3 +34,4 @@ xfce4-power-manager
 pipewire 
 pipewire-pulse 
 pipewire-jack
+rsync

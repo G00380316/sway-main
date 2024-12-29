@@ -17,7 +17,7 @@ temp_dir=$(mktemp -d)
 cd "$temp_dir"
 
 # Install dependencies
-sudo pacman -S --noconfirm go gtk3 cairo glib2 zip
+sudo pacman -S --noconfirm gtk3 cairo glib2 zip
 
 # Download and extract nwg-look v0.2.7
 wget https://github.com/nwg-piotr/nwg-look/archive/refs/tags/v0.2.7.zip

@@ -14,6 +14,12 @@ if check_directory "$HOME/.local/share/icons/Colloid-Dark"; then
     echo "Colloid-icon-theme is already installed."
 else
     echo "Installing Colloid-icon-theme..."
+    if check_directory "$HOME/Downloads"; then
+            echo "Downloads exists"
+    else
+            echo "Missing Downloads Directory...Making it now"
+            mkdir -p ~/Downloads/
+
     cd ~/Downloads || exit
     if [ -d "Colloid-icon-theme" ]; then
         echo "Colloid-icon-theme repository already cloned. Skipping clone step."

@@ -63,7 +63,7 @@ echo "
 # Run the setup script
 bash ~/ArchDispManConf/install_scripts/setup.sh
 
-bash ~/ArchDispManConf/install_scripts/dev.sh
+bash ~/ArchDispManConf/install_scripts/devs.sh
 
 # Run the extra packages
 bash ~/ArchDispManConf/install_scripts/packages.sh
@@ -79,6 +79,8 @@ bash ~/ArchDispManConf/install_scripts/add_bashrc.sh
 bash ~/ArchDispManConf/install_scripts/printers.sh
 
 bash ~/ArchDispManConf/install_scripts/bluetooth.sh
+
+bash ~/ArchDispManConf/install_scripts/util.sh
 
 sudo pacman -Rns $(pacman -Qdtq)
 yay -Rns $(yay -Qdtq)
