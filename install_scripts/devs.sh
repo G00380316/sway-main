@@ -3,21 +3,21 @@
     # Clone Neovim Configuration Repository
     echo "Cloning Neovim configuration..."
     git clone https://github.com/G00380316/nvim.git
-    mv ~/nvim $HOME/.config
+    mv ~/nvim ~/.config
 
     echo "Cloning tpm for tmux configuration..."
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-    cd $HOME
+    cd ~/
     dircolors -p > ~/.dircolors
     mkdir -p ~/Coding/Projects
 
     # Move application config folders to .config
     echo "Moving configuration folders to .config directory..."
     cd ArchConfig
-    cp -r ~/ArchDispManConf/configs/.zshenv "$HOME"
-    cp -r ~/ArchDispManConf/configs/.zshrc "$HOME"
-    cp -r ~/ArchDispManConf/configs/.p10k.zsh "$HOME"
+    cp -r ~/ArchDispManConf/configs/.zshenv "~/"
+    cp -r ~/ArchDispManConf/configs/.zshrc "~/"
+    cp -r ~/ArchDispManConf/configs/.p10k.zsh "~/"
 
 
 echo "Installing JetBrains Nerd Font..."
@@ -34,9 +34,9 @@ echo "Installing JetBrains Nerd Font..."
 
     # Step 3: Install the Font
     echo "Installing the font..."
-    cd $HOME/.local/share
+    cd ~/.local/share
     mkdir -p fonts
-    mv JetBrainsMono $HOME/.local/share/fonts/
+    mv JetBrainsMono ~/.local/share/fonts/
     fc-cache -fv
 
     # Install Python using pyenv

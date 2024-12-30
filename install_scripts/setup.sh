@@ -10,20 +10,18 @@ install_vanilla_sway() {
 install_custom_sway() {
     echo "Installing G00380316 customized sway..."
     bash ~/ArchDispManConf/install_scripts/custom_sway.sh
-    bash ~/ArchDispManConf/install_scripts/preinstall.sh
 }
 
-# Function to install vanilla sway
+# Function to install vanilla hyprland
 install_vanilla_hyprland() {
     echo "Installing vanilla hyprland..."
     bash ~/ArchDispManConf/install_scripts/vanilla_hyprland.sh
 }
 
-# Function to install customized swayWM
+# Function to install customized hyprland
 install_custom_hyprland() {
     echo "Installing G00380316 customized hyprland..."
     bash ~/ArchDispManConf/install_scripts/custom_hyprland.sh
-    bash ~/ArchDispManConf/install_scripts/preinstall.sh
 }
 
 # Function to prompt user for installation choice (vanilla or customized)
@@ -35,37 +33,32 @@ prompt_installation_choice() {
     echo "Or ENTER to skip"
     read -r choice
 
-   case "$choice" in
-        1)
-            echo "Installing $wm_name with no customization..."
-            ;;
-        2)
-            echo "Installing $wm_name with G00380316 customized..."
-            ;;
-        *)
-            echo "Skipping installation of $wm_name."
-            ;;
-    esac
-    
-    # Adding a couple of line returns
-    echo -e "\n\n"
+    # Return the choice
+    echo "$choice"
 }
 
-# Main script starts here
+# Function to prompt for Zsh installation
+prompt_zsh_installation() {
+    echo "Zsh is included in the postinstall. Do you want to proceed with installing Zsh? (y/n)"
+    read -r zsh_choice
+    if [[ "$zsh_choice" == "y" || "$zsh_choice" == "Y" ]]; then
+        echo "Running Post Script..."
+        # Post install step (if required)
+bash ~/ArchDispManConf/install_scripts/postinstall.sh
+echo "Post installation completed."
+    else
+        echo "Skipping Zsh installation."
+    fi
+}
 
 # Array to store user choices
 declare -A choices
 
 # Prompt for each window manager and store choices in the array
-prompt_and_store_choice() {
-    local wm_name="$1"
-    prompt_installation_choice "$wm_name"
-    choices["$wm_name"]=$choice
-}
-
-# Prompt for swayWM installation
-prompt_and_store_choice "sway" || "hyprland"
-
+for wm_name in "sway" "hyprland"; do
+    choice=$(prompt_installation_choice "$wm_name")
+    choices["$wm_name"]="$choice"
+done
 
 # Install based on user choices stored in the array
 for wm_name in "${!choices[@]}"; do
@@ -75,8 +68,8 @@ for wm_name in "${!choices[@]}"; do
                 "sway")
                     install_vanilla_sway
                     ;;
-                *)
-                    echo "Installation function not defined for $wm_name"
+                "hyprland")
+                    install_vanilla_hyprland
                     ;;
             esac
             ;;
@@ -85,28 +78,8 @@ for wm_name in "${!choices[@]}"; do
                 "sway")
                     install_custom_sway
                     ;;
-                *)
-                    echo "Installation function not defined for $wm_name"
-                    ;;
-            esac
-            ;;
-        3)
-            case "$wm_name" in
-                "hyprland")
-                    install_vanilla_hyprland
-                    ;;
-                *)
-                    echo "Installation function not defined for $wm_name"
-                    ;;
-            esac
-            ;;
-        4)
-            case "$wm_name" in
                 "hyprland")
                     install_custom_hyprland
-                    ;;
-                *)
-                    echo "Installation function not defined for $wm_name"
                     ;;
             esac
             ;;
@@ -118,4 +91,6 @@ done
 
 echo "All installations completed."
 
+# Prompt for Zsh installation
+prompt_zsh_installation
 

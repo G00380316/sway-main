@@ -12,23 +12,23 @@ fi
 chsh -s "$(which zsh)"
 
 # Create or modify .zshrc
-echo "Configuring zsh..."
-cat <<EOF > ~/.zshrc
+# echo "Configuring zsh..."
+# cat <<EOF > ~/.zshrc
 # Custom Zsh Configuration
-export PATH="\$HOME/bin:\$HOME/.local/bin:/usr/local/bin:\$PATH"
+#export PATH="\$HOME/bin:\$HOME/.local/bin:/usr/local/bin:\$PATH"
 
 # Oh My Zsh theme and plugins
-ZSH_THEME="robbyrussell"
-plugins=(git fzf)
+#ZSH_THEME="robbyrussell"
+#plugins=(git fzf)
 
-source \$ZSH/oh-my-zsh.sh
-EOF
+#source \$ZSH/oh-my-zsh.sh
+#EOF
 
 # Install Oh My Zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "Installing Oh My Zsh..."
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
+#if [ ! -d "$HOME/.oh-my-zsh" ]; then
+#    echo "Installing Oh My Zsh..."
+#    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/# #ohmyzsh/master/tools/install.sh)"
+#fi
 
 # Source .zshrc to apply changes (this affects the current script only)
 source ~/.zshrc
