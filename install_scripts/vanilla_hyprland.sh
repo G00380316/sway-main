@@ -6,6 +6,7 @@ packages=(
     "waybar"
     "swaylock"
     "swayidle"
+    "kitty"
 )
 
 # Function to read common packages from a file

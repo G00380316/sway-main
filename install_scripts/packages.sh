@@ -49,7 +49,7 @@ for index in $file_manager_selection; do
 done
 
 # Graphics
-graphics=("gimp" "flameshot" "eog" "sxiv" "qimgv" "inkscape" "scrot" "feh")
+graphics=("gimp" "flameshot" "eog" "sxiv" "inkscape" "scrot" "feh")
 
 echo "Choose graphics applications to install (space-separated list, e.g., 1 3 5):"
 for i in "${!graphics[@]}"; do
