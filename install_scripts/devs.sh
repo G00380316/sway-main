@@ -81,7 +81,7 @@ sudo mv flutter /opt/flutter
 # Cmake
 sudo pacman -S --noconfirm cmake
 # C#
-sudo pacman -S --noconfirm dotnet-runtime aspnet-runtime
+sudo pacman -S --noconfirm dotnet-runtime aspnet-runtime dotnet-sdk
 echo 'export PATH="$HOME/.dotnet/tools:$PATH"' >> ~/.zshrc
 # To be completely honest most things surrounding the installation of android
 # tools for flutter can be done through android Studio just navigate to the
