@@ -45,7 +45,10 @@ if ! command -v yay &> /dev/null; then
 fi
 
 # Clone the repository into the home directory
+chmod +x ~/clone.sh
+
 bash ~/clone.sh
+
 echo "cloned the git repo"
 
 clear
@@ -57,6 +60,7 @@ echo "
  |c|u|s|t|o|m| |s|c|r|i|p|t|
  +-+-+-+-+-+-+ +-+-+-+-+-+-+
 "
+cd ~/ArchDispManConf/install_scripts
 
 # Make setup.sh executable (if needed, though it's typically already executable)
 chmod +x setup.sh packages.sh devs.sh gdm.sh add_bashrc.sh printers.sh bluetooth.sh util.sh
