@@ -33,6 +33,18 @@ prompt_installation_choice() {
     echo "Or ENTER to skip"
     read -r choice
 
+       case "$choice" in
+            1)
+                echo "Installing $wm_name with no customization..."
+                ;;
+            2)
+                echo "Installing $wm_name with G00380316 customized..."
+                ;;
+            *)
+                echo "Skipping installation of $wm_name."
+                ;;
+        esac
+
     # Return the choice
     echo "$choice"
 }
