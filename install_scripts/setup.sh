@@ -43,7 +43,7 @@ prompt_installation_choice() {
             echo "Skipping installation of $wm_name."
             ;;
     esac
-    
+
     # Adding a couple of line returns
     echo -e "\n"
 }
@@ -74,7 +74,7 @@ prompt_and_store_choice() {
 }
 
 # Prompt for sway installation
-prompt_and_store_choice "sway" 
+prompt_and_store_choice "sway"
 prompt_and_store_choice "hyprland"
 
 
@@ -86,11 +86,6 @@ for wm_name in "${!choices[@]}"; do
                 "sway")
                     install_vanilla_sway
                     ;;
-                *)
-                    echo "Installation function not defined for $wm_name"
-                    ;;
-            esac
-            case "$wm_name" in
                 "hyprland")
                     install_vanilla_hyprland
                     ;;
@@ -98,18 +93,12 @@ for wm_name in "${!choices[@]}"; do
                     echo "Installation function not defined for $wm_name"
                     ;;
             esac
-
             ;;
         2)
             case "$wm_name" in
                 "sway")
                     install_custom_sway
                     ;;
-                *)
-                    echo "Installation function not defined for $wm_name"
-                    ;;
-            esac
-            case "$wm_name" in
                 "hyprland")
                     install_custom_hyprland
                     ;;
