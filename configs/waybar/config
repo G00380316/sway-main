@@ -9,12 +9,14 @@
     "clock",
     "network",
     "pulseaudio",
+    "backlight",
     "custom/pomodoro",
   ],
   "modules-center": [
     "hyprland/workspaces",
     "sway/workspaces",
         "sway/window",
+        "hyprland/window",
   ],
   "modules-right": [
     "memory",
@@ -29,6 +31,12 @@
     "format": "<span style=\"italic\">{}</span>"
 },
 "sway/window": {
+	    "format": "<span style=\"italic\">{title}</span>",
+ 		//"max-length": 333,
+ 		"max-length": 20,
+	    "seperate-outputs": true
+  },
+  "hyprland/window": {
 	    "format": "<span style=\"italic\">{title}</span>",
  		//"max-length": 333,
  		"max-length": 20,
@@ -60,8 +68,8 @@
     "on-click-right": "waybar-module-pomodoro reset"
   },
   "pulseaudio": {
-    "format": "{icon}   {volume:2}%",
-    "format-bluetooth": "{icon}   {volume}%  ",
+    "format": "{icon}  {volume:2}%",
+    "format-bluetooth": "{icon}  {volume}%  ",
     "format-muted": "󰝟",
     "format-icons": {
       "headphones": "",
@@ -85,13 +93,14 @@
     "on-click": "kitty -e 'htop'"
   },
 "battery": {
+            "interval": 2,
         	"states": {
             		"warning": 30,
             		"critical": 15,
         	},
         	"format": "{icon} {capacity}%",
         	"format-charging": "󰂄 {capacity}%",
-        	"format-plugged": "󰂄{capacity}%",
+        	"format-plugged": "󰂄 {capacity}%",
         	"format-alt": "{time} {icon}",
         	"format-full": "󱈑 {capacity}%",
         	"format-icons": ["󱊡", "󱊢", "󱊣"]
@@ -101,7 +110,7 @@
   "format-wifi": "   {signalStrength}%",
   "format-ethernet": "",
   "format-linked": " {ipaddr}",
-  "format-disconnected": "   Disconnected",
+  "format-disconnected": " ",
   "format-disabled": "",
   "max-length": 20,
   "min-length": 6,
@@ -142,8 +151,8 @@
     "escape": true
   },
 "backlight": {
-    // "device": "acpi_video1",
-    "format": "{icon}&#8239;{percent}%",
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
     "format-icons": ["", ""],
     "on-scroll-down": "brightnessctl -c backlight set 1%-",
     "on-scroll-up": "brightnessctl -c backlight set +1%"
