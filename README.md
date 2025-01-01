@@ -14,6 +14,7 @@ Within the install.sh file, you can choose to install the following window manag
 # Installation
 
 ```
+sudo pacman -S wget
 
 wget https://github.com/G00380316/ArchDispManConf/raw/main/clone.sh
 wget https://github.com/G00380316/ArchDispManConf/raw/main/install.sh
