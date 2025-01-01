@@ -59,7 +59,7 @@ echo "
 "
 
 # Make setup.sh executable (if needed, though it's typically already executable)
-# chmod +x setup.sh packages.sh
+chmod +x setup.sh packages.sh devs.sh gdm.sh add_bashrc.sh printers.sh bluetooth.sh util.sh
 
 # Run the setup script
 bash ~/ArchDispManConf/install_scripts/setup.sh
