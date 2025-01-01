@@ -24,26 +24,25 @@ install_custom_hyprland() {
     bash ~/ArchDispManConf/install_scripts/custom_hyprland.sh
 }
 
-# Function to prompt user for installation choice (vanilla or customized)
 prompt_installation_choice() {
     local wm_name="$1"
     echo "$wm_name Installation"
-    echo "1. Install $wm_name with no customization"
-    echo "2. Install $wm_name with G00380316 customized"
-    echo "Or ENTER to skip"
+    echo "1. Install vanilla $wm_name"
+    echo "2. Install customized $wm_name"
+    echo "Or press ENTER to skip"
     read -r choice
 
-       case "$choice" in
-            1)
-                echo "Installing $wm_name with no customization..."
-                ;;
-            2)
-                echo "Installing $wm_name with G00380316 customized..."
-                ;;
-            *)
-                echo "Skipping installation of $wm_name."
-                ;;
-        esac
+    case "$choice" in
+        1)
+            echo "Installing vanilla $wm_name..."
+            ;;
+        2)
+            echo "Installing customized $wm_name..."
+            ;;
+        *)
+            echo "Skipping installation of $wm_name."
+            ;;
+    esac
 
     # Return the choice
     echo "$choice"
@@ -66,13 +65,13 @@ echo "Post installation completed."
 # Array to store user choices
 declare -A choices
 
-# Prompt for each window manager and store choices in the array
+# Prompt and store user choices for Sway and Hyprland installations
 for wm_name in "sway" "hyprland"; do
     choice=$(prompt_installation_choice "$wm_name")
     choices["$wm_name"]="$choice"
 done
 
-# Install based on user choices stored in the array
+# Execute installation steps based on user choices
 for wm_name in "${!choices[@]}"; do
     case "${choices[$wm_name]}" in
         1)
