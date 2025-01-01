@@ -51,7 +51,7 @@ bash ~/clone.sh
 
 echo "cloned the git repo"
 
-DIRECTORY="./ArchDispManConf/"
+DIRECTORY="ArchDispManConf"
 
 if [ ! -d "$DIRECTORY" ]; then
   echo "Error: Directory $DIRECTORY does not exist."
