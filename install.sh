@@ -51,6 +51,18 @@ bash ~/clone.sh
 
 echo "cloned the git repo"
 
+DIRECTORY="~/ArchDispManConf/install_scripts"
+
+if [ ! -d "$DIRECTORY" ]; then
+  echo "Error: Directory $DIRECTORY does not exist."
+  echo "Don't worry run script again!!! ;) "
+  exit 1
+fi
+
+echo "Directory $DIRECTORY exists. Continuing..."
+
+wait 3
+
 clear
 
 echo "
