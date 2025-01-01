@@ -45,7 +45,8 @@ if ! command -v yay &> /dev/null; then
 fi
 
 # Clone the repository into the home directory
-git clone https://github.com/G00380316/ArchDispManConf.git
+bash ~/clone.sh
+echo "cloned the git repo"
 
 clear
 
