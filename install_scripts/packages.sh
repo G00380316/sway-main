@@ -112,16 +112,20 @@ utilities=( \
     "pavucontrol" "wl-clipboard" "bc"
 )
 
-echo "Choose utilities applications to install (space-separated list, e.g., 1 3 5):"
+echo "Choose utilities applications to install (space-separated list, e.g., 1 3 5, or type 'all' to install all):"
 for i in "${!utilities[@]}"; do
     echo "$((i+1)). ${utilities[i]}"
 done
 read -rp "Selection: " utilities_selection
 
 selected_utilities=()
-for index in $utilities_selection; do
-    selected_utilities+=("${utilities[index-1]}")
-done
+if  [[ "$utilities_selection" == "all" ]]; then
+    selected_utilities=("${utilities[@]}")
+else
+    for index in $utilities_selection; do
+        selected_utilities+=("${utilities[index-1]}")
+    done
+fi
 
 # Other Packages
 other_packages=( \

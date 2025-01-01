@@ -1,6 +1,8 @@
 # using the super key
 set $mod Mod4
 
+# For Virtual Machines
+# swaymsg output Virtual-1 pos 0 0 mode 1920x1080@60HZ
 # set terminal and menu
 set $term tilix
 set $menu rofi -show drun -modi drun -line-padding 4 -hide-scrollbar -show-icons
@@ -105,7 +107,7 @@ client.urgent           #ff5555 #ff5555 #282a36 #ff5555 #ff5555
 client.placeholder      #282a36 #282a36 #bd93f9 #282a36 #282a36
 client.background       #282a36
 
-bar { 
+bar {
      swaybar_command waybar
      }
 #GTK issue

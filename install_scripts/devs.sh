@@ -15,10 +15,10 @@
     # Move application config folders to .config
     echo "Moving configuration folders to .config directory..."
     cd ArchConfig
-    cp -r ~/ArchDispManConf/configs/.zshenv "~/"
-    cp -r ~/ArchDispManConf/configs/.zshrc "~/"
-    cp -r ~/ArchDispManConf/configs/.p10k.zsh "~/"
-
+    cp -r ~/ArchDispManConf/configs/.zshenv ~
+    cp -r ~/ArchDispManConf/configs/.zshrc ~
+    cp -r ~/ArchDispManConf/configs/.p10k.zsh ~
+    cp -r ~/ArchDispManConf/configs/.fzf.zsh ~
 
 echo "Installing JetBrains Nerd Font..."
     # Step 1: Download the Nerd Font

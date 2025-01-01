@@ -2,7 +2,7 @@ geany
 geany-plugins
 betterbird-bin
 onedrive-abraunegg
-fzf 
+fzf
 bat
 tofi
 arc-gtx-theme
@@ -13,3 +13,4 @@ anki-bin
 swww
 android-studio
 qimgv
+visual-studio-code-bin

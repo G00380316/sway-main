@@ -89,7 +89,7 @@
   },
   "cpu": {
     "interval": 1,
-    "format": "<span foreground='#6c71c4'> </span>  CPU{usage:2}%",
+    "format": "<span foreground='#6c71c4'> </span>  CPU {usage:2}%",
     "on-click": "kitty -e 'htop'"
   },
 "battery": {
@@ -107,17 +107,16 @@
 	},
 "network": {
   "interval": 2,
+  "format": "{ifname}",
   "format-wifi": "   {signalStrength}%",
-  "format-ethernet": "",
-  "format-linked": " {ipaddr}",
+  "format-ethernet": "󰈀 ",
   "format-disconnected": " ",
-  "format-disabled": "",
   "max-length": 20,
   "min-length": 6,
-  "format-alt": "{essid}",
+  "format-alt": "{essid} {ifname}",
     "tooltip-format": " {ifname} via {gwaddri}",
     "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
-    "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+    "tooltip-format-ethernet": "   {ifname}\nIP: {ipaddr}",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50
   },
