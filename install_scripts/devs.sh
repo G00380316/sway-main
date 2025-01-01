@@ -3,10 +3,7 @@
     # Clone Neovim Configuration Repository
     echo "Cloning Neovim configuration..."
     git clone https://github.com/G00380316/nvim.git
-    mv ~/nvim ~/.config
-
-    echo "Cloning tpm for tmux configuration..."
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    mv ./nvim ~/.config
 
     cd ~/
     dircolors -p > ~/.dircolors
@@ -75,18 +72,22 @@ echo "Installing JetBrains Nerd Font..."
 
 # Development Tools
 echo "Installing basic development tools..."
-sudo pacman -S --noconfirm base-devel curl git github-cli wget lazygit gcc jdk-openjdk ruby
+sudo pacman -S --noconfirm github-cli lazygit gcc jdk-openjdk ruby
 
 # Flutter Install
 git clone https://github.com/flutter/flutter.git -b stable
 sudo mv flutter /opt/flutter
 
-# Some dependencies
+# Cmake
 sudo pacman -S --noconfirm cmake
+# C#
+sudo pacman -S --noconfirm dotnet-runtime aspnet-runtime
+echo 'export PATH="$HOME/.dotnet/tools:$PATH"' >> ~/.zshrc
 # To be completely honest most things surrounding the installation of android
 # tools for flutter can be done through android Studio just navigate to the
 # settings and seach for 'Android SDK'
 
+# Android Development
 yay -S --noconfirm android-studio
 # yay -S --noconfirm android-sdk android-ndk
 
@@ -98,8 +99,8 @@ sudo pacman -S --noconfirm php lua
 
 # Runtime dependencies
 # Browsing and Other Applications
-echo "Installing Neofetch and Neovim"
-sudo pacman -S --noconfirm neovim neofetch
+echo "Installing Neovim"
+sudo pacman -S --noconfirm neovim
 
 # Productivity
 sudo pacman -S --noconfirm zoxide tmux
@@ -120,23 +121,6 @@ flatpak install flathub org.onlyoffice.desktopeditors -y
 flatpak install flathub org.gnome.Boxes -y
 # Important we use flatseal to manager our flatpak apps (Cuase sometimes they don't render properly) [Issue was scaling make sure you dont change your scale from 1]
 flatpak install flatseal -y
-
-# Terminal Calculator
-sudo pacman -S --noconfirm bc
-# Monitor hardware health ( CPU temperatures, fan speeds, voltages, and other system health metrics.)
-sudo pacman -S --noconfirm lm_sensors
-# Command-line tool for visualizing directory structures in a clear, hierarchical format
-sudo pacman -S --noconfirm tree
-# Interactive process viewer and system monitor for Unix-like operating systems.
-sudo pacman -S --noconfirm htop
-# A simple, fast, and user-friendly alternative to the 'find' command. "'fd' -e" 'everthing'
-sudo pacman -S --noconfirm fd
-# A command-line search tool that recursively searches your current directory for a regex pattern "rg"
-sudo pacman -S --noconfirm ripgrep
-# Sound utility
-sudo pacman -S --noconfirm pavucontrol
-# For Display Utility
-sudo pacman -S --noconfirm wlr-randr
 
 # Clean up
 echo "Cleaning up..."

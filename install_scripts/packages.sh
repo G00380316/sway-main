@@ -107,7 +107,7 @@ done
 # Utilities
 utilities=( \
     "gparted" "gnome-disk-utility" "neofetch" "nitrogen" "numlockx" "galculator" "cpu-x" "udns-utils" \
-    "whois" "curl" "tree" "btop" "htop" "bat" "brightnessctl" "redshift" "i7z" "bleachbit" \
+    "whois" "tree" "btop" "htop" "bat" "brightnessctl" "redshift" "i7z" "bleachbit" \
     "gdisk" "ntfs-3g" "dosfstools" "xdg-desktop-portal-wlr" "v4l2loopback-dkms" "lm_sensors" "fd" "ripgrep" \
     "pavucontrol" "wl-clipboard" "bc"
 )

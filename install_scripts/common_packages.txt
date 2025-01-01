@@ -13,7 +13,6 @@ terminus-font
 ttf-dejavu
 ttf-freefont
 gettext 
-git
 grim
 gvfs
 kitty
