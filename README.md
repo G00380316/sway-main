@@ -14,11 +14,15 @@ Within the install.sh file, you can choose to install the following window manag
 
 ```
 wget https://github.com/G00380316/ArchDispManConf/raw/main/install.sh
+wget https://github.com/G00380316/ArchDispManConf/raw/main/clone.sh
 
+chmod +x clone.sh
 chmod +x install.sh
 
+./clone.sh
 ./install.sh
 
+rm clone.sh
 rm install.sh
 
 ```
