@@ -1,49 +1,53 @@
 #!/usr/bin/env bash
 
-# Default directory if no input is provided within the timeout
 default_dir=~/
-
+allowed_dirs=(.config)
+allowed_files=(.zshrc)
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/ ~/Documents ~/OneDrive ~/Coding ~/Coding/Projects -mindepth 1 -maxdepth 3 -type d | sed 's|^/home/enoch/||' | fzf)
+    selected=$(find ~/ -mindepth 1 -maxdepth 6 \( -type d -name '.*' $(printf "! -name %s " "${allowed_dirs[@]}") -prune -o -type d -print \) -o \( -type f -name '.*' $(printf "! -name %s " "${allowed_files[@]}") -prune -o -type f -print \) | \
+        sed 's|^/home/enoch/||' | sort | uniq | fzf)
 fi
 
+# If no selection, fall back to default directory (no Neovim)
 if [[ -z $selected ]]; then
     selected=$default_dir
-fi
-
-# Step 2: If no directory selected, attach to an existing session or create a new default session
-if [[ -z $selected ]]; then
-    #echo "No directory selected. Attaching to the last session or creating a default session."
-    last_session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | head -n 1)
-
-    if [[ -n $last_session ]]; then
-        #echo "Attaching to the last session: $last_session"
-        tmux attach-session -t "$last_session"
-    else
-        default_session_name=$(basename "$default_dir" | tr . _)
-        #echo "No existing sessions found. Creating a new session: $default_session_name"
-        tmux new-session -s "$default_session_name" -c "$default_dir"
-    fi
+    tmux new-session -ds "Home" -c "$selected"
+    tmux attach-session -t "Home"
     exit 0
 fi
 
-# Step 3: Prepare session name and check for tmux
+# Step 2: Determine if the selected item is a directory or file
+selected_path="$HOME/$selected"
 selected_name=$(basename "$selected" | tr . _)
 
-# Step 4: Check if the selected session exists
-if ! tmux has-session -t=$selected_name 2>/dev/null; then
-    #echo "Creating a new session: $selected_name"
-    tmux new-session -ds "$selected_name" -c "$selected"
-fi
+# Step 3: If it's a directory, create a tmux session for the directory
+if [[ -d "$selected_path" ]]; then
+    # Check if the tmux session exists for the directory
+    if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+        # Create a new tmux session named after the directory
+        tmux new-session -ds "$selected_name" -c "$selected_path"
+    fi
 
-# Step 5: Attach or switch to the session
-if [[ -z $TMUX ]]; then
-    #echo "Attaching to session: $selected_name"
-    tmux attach-session -t "$selected_name"
+    # Attach or switch to the tmux session
+    if [[ -z $TMUX ]]; then
+        tmux attach-session -t "$selected_name"
+    else
+        tmux switch-client -t "$selected_name"
+    fi
 else
-    #echo "Switching to session: $selected_name"
-    tmux switch-client -t "$selected_name"
+    # Step 4: If it's a file, create a new tmux session and open the file in Neovim
+    if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+        # Create a new tmux session named after the file
+        tmux new-session -ds "$selected_name" -c "$(dirname "$selected_path")" "nvim '$selected_path'"
+    fi
+
+    # Attach or switch to the tmux session
+    if [[ -z $TMUX ]]; then
+        tmux attach-session -t "$selected_name"
+    else
+        tmux switch-client -t "$selected_name"
+    fi
 fi
