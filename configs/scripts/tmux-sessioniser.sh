@@ -12,21 +12,35 @@ else
         sed 's|^/home/enoch/||' | sort | uniq | fzf)
 fi
 
-# If no selection, fall back to default directory (no Neovim)
+# If no selection, fall back to default directory
 if [[ -z $selected ]]; then
-    selected=$default_dir
-    if ! tmux has-session -t "Home" 2>/dev/null; then
-        tmux new-session -c "~/" -n "Home"
+    if [[ -n $TMUX ]]; then
+        # Inside tmux: Switch to the last session if it exists
+        last_session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | grep -v "$(tmux display-message -p '#S')" | head -n 1)
+        if [[ -n $last_session ]]; then
+            tmux switch-client -t "$last_session"
+        else
+            echo "No other tmux session to switch to."
+        fi
+    else
+        # Outside tmux: Attach to the last session or create a default one
+        last_session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | head -n 1)
+        if [[ -n $last_session ]]; then
+            tmux attach-session -t "$last_session"
+        else
+            default_session_name=$(basename "$default_dir" | tr . _)
+            tmux new-session -s "$default_session_name" -c "$default_dir"
+        fi
     fi
-    tmux attach-session -t "Home" "selected"
+    exit 0
 fi
 
-# Step 2: Determine if the selected item is a directory or file
 selected_path="$HOME/$selected"
 selected_name=$(basename "$selected" | tr . _)
 
-# Step 3: If it's a directory, create a tmux session for the directory
+# Handle the selected item (directory or file)
 if [[ -d "$selected_path" ]]; then
+    # Directory case
     if [[ -z $TMUX ]]; then
         if ! tmux has-session -t="$selected_name" 2>/dev/null; then
             tmux new-session -ds "$selected_name" -c "$selected_path"
@@ -36,13 +50,10 @@ if [[ -d "$selected_path" ]]; then
         tmux new-session -c "$selected_path" -n "$selected_name"
     fi
 else
-    # Step 4: If it's a file, create a new tmux session and open the file in Neovim
-    if ! tmux has-session -t="$selected_name" && ! tmux has-session -t="Home"
-2>/dev/null; then
+    # File case
+    if ! tmux has-session -t="$selected_name" 2>/dev/null; then
         tmux new-session -ds "$selected_name" -c "$(dirname "$selected_path")" "nvim '$selected_path'"
     fi
-
-    # Attach to the session
     if [[ -z $TMUX ]]; then
         tmux attach-session -t "$selected_name"
     else
