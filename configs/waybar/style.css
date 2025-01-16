@@ -83,6 +83,15 @@ window#waybar {
     color: #6c71c4;
 }
 
+#custom-bluetooth {
+    color: #268bd2;
+}
+
+#custom-power {
+    color: #ff5c5c;
+    font-size: 19px;
+}
+
 #custom-pomodoro.work {
     color: #ff5c5c;
 }

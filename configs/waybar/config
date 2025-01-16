@@ -19,12 +19,14 @@
         "hyprland/window",
   ],
   "modules-right": [
+    "custom/bluetooth",
     "memory",
     "cpu",
     "battery",
     "disk",
     "tray",
     "custom/notification",
+    "custom/power",
   ],
 
 "sway/mode": {
@@ -53,9 +55,15 @@
     "format-alt": "  {:%a, %b %d}" // Icon: calendar-alt,
 },
 	"custom/power": {
-		"format": "󰐥",
-		"on-click": "/home/loki/bin/waybar-power.sh"},
-
+		"format": "󰐥 ",
+		"on-click": "zsh -c '~/.config/scripts/power'"
+        },
+    "custom/bluetooth": {
+        "format-icons": "  ",
+        "format": "{icon}",
+        "on-click": "rofi-bluetooth &",
+        "tooltip": false,
+    },
   "custom/pomodoro": {
     "format-icons": {
       "work": "󰔟",
@@ -90,7 +98,7 @@
   "cpu": {
     "interval": 1,
     "format": "<span foreground='#6c71c4'> </span>  CPU {usage:2}%",
-    "on-click": "kitty -e 'htop'"
+    "on-click": "tilix -e 'htop'"
   },
 "battery": {
             "interval": 2,

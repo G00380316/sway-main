@@ -305,11 +305,14 @@ show_menu() {
 }
 
 # Rofi command to pipe into, can add any options here
-rofi_command="rofi -dmenu $* -p"
+rofi_command="rofi -dmenu $*"
 
 case "$1" in
     --status)
         print_status
+        ;;
+    --device_connected)
+        device_connected
         ;;
     *)
         show_menu

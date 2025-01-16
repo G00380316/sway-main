@@ -17,8 +17,8 @@ bindsym $mod+Shift+Return exec kitty
 bindsym $mod+Space exec $menu
 bindsym $mod+n exec swaync-client -t -sw
 bindsym $mod+f exec thunar
-bindsym $mod+b exec firefox-esr
-bindsym $mod+Shift+b exec firefox-esr -private-window
+bindsym $mod+b exec firefox
+bindsym $mod+Shift+b exec firefox -private-window
 bindsym $mod+e exec geany
 bindsym $mod+g exec swaymsg "workspace 8; exec gimp"
 bindsym $mod+d exec swaymsg "workspace 9; exec Discord"

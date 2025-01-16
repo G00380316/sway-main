@@ -217,6 +217,8 @@ export PATH="$HOME/.config/waybar/waybar-module-pomodoro/target/release:$PATH"
 # SideLoader
 export PATH="/home/enoch/Documents/Applications/Sideloader/Working Binaries:$PATH"
 alias sideloader='sideloader-cli-x86_64-linux-gnu'
+export PATH="/home/enoch/.config/waybar/scripts:$PATH"
+alias blueman="rofi-bluetooth"
 
 # Flutter
 export PATH="$PATH:/opt/flutter/bin"
@@ -233,3 +235,6 @@ export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /home/enoch/.dart-cli-completion/zsh-config.zsh ]] && . /home/enoch/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
+export PATH="$HOME/.dotnet/tools:$PATH"
+
+PATH=~/.console-ninja/.bin:$PATH
