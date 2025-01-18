@@ -7,7 +7,11 @@ if ! command -v git &> /dev/null; then
     # Use pacman to install git
     if command -v pacman &> /dev/null; then
         sudo pacman -Sy
-        sudo pacman -S git --noconfirm
+        sudo pacman -S --noconfirm git
+
+        echo "Git installation successful. Run this script again to use git."
+
+        exit 1
     else
         echo "Cannot install Git automatically using pacman. Please install Git manually and run this script again."
         exit 1
@@ -32,6 +36,8 @@ if ! command -v yay &> /dev/null; then
         mv yay $HOME/.config
         cd $HOME/.config/yay
         makepkg -si --noconfirm
+
+        exit 1
     else
         echo "Cannot install Yay automatically using pacman. Please install Yay manually and run this script again."
         exit 1
