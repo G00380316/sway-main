@@ -83,9 +83,14 @@ window#waybar {
     color: #6c71c4;
 }
 
-#custom-bluetooth {
+#bluetooth {
     color: #268bd2;
 }
+
+#bluetooth.off {
+    color: #ff5c5c;
+}
+
 
 #custom-power {
     color: #ff5c5c;

@@ -8,6 +8,7 @@
   "modules-left": [
     "clock",
     "network",
+    "bluetooth",
     "pulseaudio",
     "backlight",
     "custom/pomodoro",
@@ -19,7 +20,6 @@
         "hyprland/window",
   ],
   "modules-right": [
-    "custom/bluetooth",
     "memory",
     "cpu",
     "battery",
@@ -58,11 +58,18 @@
 		"format": "󰐥 ",
 		"on-click": "zsh -c '~/.config/scripts/power'"
         },
-    "custom/bluetooth": {
-        "format-icons": "  ",
-        "format": "{icon}",
+    "bluetooth": {
+        "enabled": true,
+        "adapter": "hci0",
+        "format": " {icon} ",
+        "format-off": " {icon}",
+        "format-icons": {  
+          "enabled": "",  // Icon for enabled state
+          "on": "",  // Icon for enabled state
+          "off": " ",  // Icon for powered-off state
+        },
+        "tooltip-format": "{status}",
         "on-click": "rofi-bluetooth &",
-        "tooltip": false,
     },
   "custom/pomodoro": {
     "format-icons": {
