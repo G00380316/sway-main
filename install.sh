@@ -36,6 +36,11 @@ if ! command -v yay &> /dev/null; then
         mv yay $HOME/.config
         cd $HOME/.config/yay
         makepkg -si --noconfirm
+
+        echo "Yay installation successful. Run this script again to use yay."
+
+        exit 1
+
     else
         echo "Cannot install Yay automatically using pacman. Please install Yay manually and run this script again."
         exit 1
