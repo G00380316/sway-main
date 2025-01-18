@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the Betterbird process name
-PROCESS_NAME="betterbird"
+PROCESS_NAME="betterbird-bin"
 
 # Check if Betterbird is running
 if pgrep -x "$PROCESS_NAME" > /dev/null; then
