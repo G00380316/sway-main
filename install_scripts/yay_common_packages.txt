@@ -11,6 +11,5 @@ microsoft-edge-stable-bin
 google-chrome
 anki-bin
 swww
-android-studio
 qimgv
 visual-studio-code-bin
