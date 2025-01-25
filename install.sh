@@ -110,6 +110,9 @@ bash ~/ArchDispManConf/install_scripts/util.sh
 
 sudo pacman -Rns $(pacman -Qdtq)
 yay -Rns $(yay -Qdtq)
+sudo rm -rf go
+sudo rm -rf JetBrainsMono
+swww img ~/.config/backgrounds/Luffylying.png
 
 printf "\e[1;32mYou can now reboot! Thanks you.\e[0m\n"
 

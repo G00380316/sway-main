@@ -1,5 +1,4 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc. Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -36,6 +35,7 @@ zinit light Aloxaf/fzf-tab
 #source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
 
 # Terminal Styling
 cat .nf 2> /dev/null
@@ -93,6 +93,9 @@ alias trbz2='tar -xjvf'
 alias trxz='tar -xJvf'
 alias uxz='unxz'
 alias uzip='unzip'
+alias gnome-disks='xhost +SI:localuser:root
+sudo gnome-disks
+'
 
 # Add in snippets
 zinit snippet OMZP::git

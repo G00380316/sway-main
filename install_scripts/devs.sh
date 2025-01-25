@@ -5,13 +5,15 @@
     git clone https://github.com/G00380316/nvim.git
     mv ./nvim ~/.config
 
+    echo "Cloning tpm for tmux configuration..."
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
     cd ~/
     dircolors -p > ~/.dircolors
     mkdir -p ~/Coding/Projects
 
     # Move application config folders to .config
     echo "Moving configuration folders to .config directory..."
-    cd ArchConfig
     cp -r ~/ArchDispManConf/configs/.zshenv ~
     cp -r ~/ArchDispManConf/configs/.zshrc ~
     cp -r ~/ArchDispManConf/configs/.p10k.zsh ~
