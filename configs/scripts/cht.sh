@@ -10,6 +10,3 @@ if printf "%s" "$languages" | grep -qs "$selected"; then
 else
 	curl cht.sh/$selected~$query
 fi
-
-
-

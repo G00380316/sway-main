@@ -9,7 +9,7 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     selected=$(find ~/ -mindepth 1 -maxdepth 3 \( -type d -name '.*' $(printf "! -name %s " "${allowed_dirs[@]}") -prune -o -type d -print \) -o \( -type f -name '.*' $(printf "! -name %s " "${allowed_files[@]}") -prune -o -type f -print \) | \
-        sed "s|^/home/$USER/||" | sort | uniq | fzf)
+        sed 's|^/home/enoch/||' | sort | uniq | fzf)
 fi
 
 # If no selection, fall back to default directory
