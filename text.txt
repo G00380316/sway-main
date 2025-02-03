@@ -27,5 +27,21 @@ sudo smbpasswd -a enoch
 
 - Cuda llama install
 
-sudo pacman -S ollama-cuda 
+sudo pacman -S ollama-cuda
 use "ollama server" to start ollama proccess and then ollama run to install models and run them
+
+- Wine install
+
+❯ n /etc/pacman.conf
+
+Uncomment """
+
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+
+""
+sudo pacman -S wine wine-mono wine-gecko winetricks
+
+yay -S winegui
+
+dome!
