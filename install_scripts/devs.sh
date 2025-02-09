@@ -107,10 +107,6 @@ sudo pacman -S --noconfirm neovim
 # Productivity
 sudo pacman -S --noconfirm zoxide tmux
 
-echo "Installing tpm for tmux configuration..."
-#git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-cp -r ../configs/.tmux ~/
-
 # Install Flatpak and Obsidian,Vesktop,Postman,DbGate,...etc
 echo "Installing Flatpak and Obsidian..."
 sudo pacman -S --noconfirm flatpak
