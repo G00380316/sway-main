@@ -4,7 +4,7 @@ default_dir=~/           # Default directory to fall back to
 allowed_dirs=(.config)   # Allowed directories to skip
 allowed_files=(.zshrc)   # Allowed files to skip
 
-# Handle input arguments
+# Handle input arguments (Replace root username in dir on line 5)
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
