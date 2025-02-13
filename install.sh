@@ -84,7 +84,7 @@ echo "
 cd ~/ArchDispManConf/install_scripts
 
 # Make setup.sh executable (if needed, though it's typically already executable)
-chmod +x setup.sh packages.sh devs.sh gdm.sh add_bashrc.sh printers.sh bluetooth.sh util.sh
+chmod +x setup.sh packages.sh devs.sh gdm.sh add_bashrc.sh printers.sh bluetooth.sh util.sh cleanup.sh
 
 # Run the setup script
 bash ~/ArchDispManConf/install_scripts/setup.sh
@@ -108,17 +108,7 @@ bash ~/ArchDispManConf/install_scripts/bluetooth.sh
 
 bash ~/ArchDispManConf/install_scripts/util.sh
 
-sudo pacman -Rns $(pacman -Qdtq)
-yay -Rns $(yay -Qdtq)
-
-echo "
-run this if all is good
-
-sudo rm -rf ~/go
-sudo rm -rf ~/JetBrainsMono
-swww img ~/.config/backgrounds/Luffylying.png
-
-"
+bash ~/ArchDispManConf/install_scripts/cleanup.sh
 
 printf "\e[1;32mYou can now reboot! Thanks you.\e[0m\n"
 
