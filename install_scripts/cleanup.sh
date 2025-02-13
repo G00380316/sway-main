@@ -21,6 +21,9 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
             make clean
             make
         echo "Built Neovim Plugins!"
+        echo "Making some dirs..."
+            mkdir -p ~/Pictures/ScreenShots/
+        echo "Made new dirs!"
     echo "Automation done!!! Everything should be installed and tidy!"
 elif [[ "$response" =~ ^[Nn]$ ]]; then
     echo "Automation will not be run."
