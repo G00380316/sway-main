@@ -121,6 +121,7 @@ flatpak install flathub net.lugsole.bible_gui -y
 flatpak install flathub com.usebruno.Bruno -y
 flatpak install flathub org.onlyoffice.desktopeditors -y
 flatpak install flathub org.gnome.Boxes -y
+flatpak install flathub tv.kodi.Kodi -y
 # Important we use flatseal to manager our flatpak apps (Cuase sometimes they don't render properly) [Issue was scaling make sure you dont change your scale from 1]
 flatpak install flatseal -y
 
