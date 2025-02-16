@@ -91,7 +91,7 @@ for index in $text_editor_selection; do
 done
 
 # Multimedia
-multimedia=("mpv" "vlc" "audacity" "kdenlive" "obs-studio" "rhythmbox" "ncmpcpp" "mkvtoolnix-gui" "ffmpeg" "yt-dlp")
+multimedia=("mpv" "kodi" "vlc" "audacity" "kdenlive" "obs-studio" "rhythmbox" "ncmpcpp" "mkvtoolnix-gui" "ffmpeg" "yt-dlp")
 
 echo "Choose Multimedia applications to install (space-separated list, e.g., 1 3 5), or type 'all' to install all):"
 for i in "${!multimedia[@]}"; do
