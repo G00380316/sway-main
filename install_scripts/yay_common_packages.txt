@@ -14,3 +14,4 @@ swww
 qimgv
 visual-studio-code-bin
 moneymanagerex
+filebot
