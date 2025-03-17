@@ -26,7 +26,13 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 #ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # type p10k configure to open up wizard again
-plugins=(git fzf)
+plugins=(
+    git
+    fzf
+    archlinux
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -38,8 +44,15 @@ zinit light Aloxaf/fzf-tab
 
 
 # Terminal Styling
-cat .nf 2> /dev/null
-setsid neofetch >| ~/.nf
+# cat .nf 2> /dev/null
+# setsid neofetch >| ~/.nf
+# Display Pokemon-colorscripts
+# Project page: https://gitlab.com/phoneybadger/pokemon-colorscripts#on-other-distros-and-macos
+#pokemon-colorscripts --no-title -s -r #without fastfetch
+pokemon-colorscripts --no-title -s -r | fastfetch -c $HOME/.config/fastfetch/config-pokemon.jsonc --logo-type file-raw --logo-height 10 --logo-width 5 --logo -
+
+# fastfetch. Will be disabled if above colorscript was chosen to install
+#fastfetch -c $HOME/.config/fastfetch/config-compact.jsonc
 
 # History
 HISTSIZE=10000
@@ -56,9 +69,13 @@ setopt hist_find_no_dups
 setopt correct
 
 ### Custom aliases and Keybinds ###
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
+alias ls='lsd'
+alias q='exit'
+alias qa='exit'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
 alias q='exit'
 alias e='exec zsh'
 alias rs='reboot'
@@ -73,11 +90,9 @@ alias yt='yt-dlp'
 alias calc='bc'
 alias f='find . \( -type f -o -type d \) -name ".*" -o \( -type f -o -type d \) | sed "s|^\./||" | fzf'
 alias fp='fzf --preview="bat --color=always {}"'
-alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
 alias tl='tmux attach-session -t "$(tmux ls | tail -n1 | cut -d: -f1)"'
-alias lt='tmux attach-session -t "$(tmux ls | tail -n1 | cut -d: -f1)"'
 alias t='tmux'
 alias s='source'
 alias lg='lazygit'
