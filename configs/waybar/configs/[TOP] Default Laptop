@@ -21,9 +21,8 @@
     "custom/pomodoro",
   ],
   "modules-center": [
+      "custom/light_dark",
     "hyprland/workspaces",
-    "sway/workspaces",
-        "sway/window",
         "hyprland/window",
   ],
   "modules-right": [
