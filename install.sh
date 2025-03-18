@@ -96,7 +96,7 @@ bash ~/ArchDispManConf/install_scripts/packages.sh
 
 echo "Make sure a Display Manager is installed"
 
-# make sure gdm3 is installed
+# make sure gdm is installed
 bash ~/ArchDispManConf/install_scripts/gdm.sh
 
 # add bashrc question
@@ -109,6 +109,8 @@ bash ~/ArchDispManConf/install_scripts/bluetooth.sh
 bash ~/ArchDispManConf/install_scripts/util.sh
 
 bash ~/ArchDispManConf/install_scripts/cleanup.sh
+
+sudo ./AniInstall.sh
 
 printf "\e[1;32mYou can now reboot! Thanks you.\e[0m\n"
 
