@@ -7,7 +7,7 @@
 {
 // CIRCLES Style
 "hyprland/workspaces": {
-	"active-only": true,
+	"active-only": false,
 	"all-outputs": false,
 	"format": "{icon}",
 	"show-special": false,
@@ -15,25 +15,24 @@
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
     "persistent-workspaces": {
-      "*": 5
-	},
-	"format-icons": {
+        "*": [1, 2, 3, 4, 5]
+    },"format-icons": {
 		"active": "",
 		"default": "",
 	},
 },
 // ROMAN Numerals style
 "hyprland/workspaces#roman": {
-	"active-only": true,
+	"active-only": false,
 	"all-outputs": false,
 	"format": "{icon}",
 	"show-special": false,
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
-    "persistent-workspaces": {
-      "*": 5
-	},
+ "persistent-workspaces": {
+        "*": [1, 2, 3, 4, 5]
+    },
 	"format-icons": {
 		"1": "I",
 		"2": "II",
@@ -49,16 +48,16 @@
 },
 // PACMAN Style
 "hyprland/workspaces#pacman": {
-	"active-only": true,
+	"active-only": false,
 	"all-outputs": false,
 	"format": "{icon}",
 	"on-click": "activate",
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
 	"show-special": false,
-    "persistent-workspaces": {
-      "*": 5
-	},
+ "persistent-workspaces": {
+        "*": [1, 2, 3, 4, 5]
+    },
 	"format": "{icon}",
 	"format-icons": {
             "active": "<span font='12'>󰮯</span>",
@@ -73,8 +72,8 @@
 	"all-outputs": false,
 	"format": "{icon}",
     "persistent-workspaces": {
-      "*": 5
-	},
+        "*": [1, 2, 3, 4, 5]
+    },
 	"format-icons": {
 		"1": "一",
 		"2": "二",
@@ -98,8 +97,8 @@
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
     "persistent-workspaces": {
-      "*": 5
-	},
+        "*": [1, 2, 3, 4, 5]
+    },
 		"format-icons": {
 		"1": "Uno",
 		"2": "Due",
@@ -111,9 +110,9 @@
 		"8":"Otto",
 		"9":"Nove",
 		"10":"Dieci"
-	}	
+	}
   },
-  
+
 //  NUMBERS and ICONS style
 "hyprland/workspaces#4": {
 	"format": "{name}",
@@ -150,8 +149,8 @@
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
     "persistent-workspaces": {
-      "*": 5
-	},
+        "*": [1, 2, 3, 4, 5]
+    },
 	"format-icons": {
 		"1": "1",
 		"2": "2",
@@ -165,7 +164,7 @@
 		"10": "10",
 	},
 },
-// NUMBERS and ICONS style with window rewrite 
+// NUMBERS and ICONS style with window rewrite
 "hyprland/workspaces#rw": {
 	"disable-scroll": true,
 	"all-outputs": false,
@@ -176,12 +175,12 @@
 	"on-scroll-up": "hyprctl dispatch workspace e+1",
 	"on-scroll-down": "hyprctl dispatch workspace e-1",
 	"persistent-workspaces": {
-		"*": 5
-	  },
+        "*": [1, 2, 3, 4, 5]
+    },
 	"format": "{icon} {windows}",
 	"format-window-separator": " ",
 	"window-rewrite-default": " ",
-	"window-rewrite": {		
+	"window-rewrite": {
 		"title<.*amazon.*>": " ",
 		"title<.*reddit.*>": " ",
 
@@ -254,7 +253,7 @@
 		"class<nwg-look>": " ",
 
 		"class<steam>": " ",
-		"class<thunar|nemo>": "󰝰 ",	
+		"class<thunar|nemo>": "󰝰 ",
     "class<Gparted>":"",
 		"class<gimp>": " ",
 		"class<emulator>": "📱 ",
