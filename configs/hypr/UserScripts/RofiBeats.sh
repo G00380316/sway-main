@@ -11,7 +11,7 @@ rofi_theme_1="$HOME/.config/rofi/config-rofi-Beats-menu.rasi"
 # Online Stations. Edit as required
 declare -A online_music=(
   ["FM - Easy Rock 96.3 📻🎶"]="https://radio-stations-philippines.com/easy-rock"
-  ["FM - Easy Rock - Baguio 91.9 📻🎶"]="https://radio-stations-philippines.com/easy-rock-baguio" 
+  ["FM - Easy Rock - Baguio 91.9 📻🎶"]="https://radio-stations-philippines.com/easy-rock-baguio"
   ["FM - Love Radio 90.7 📻🎶"]="https://radio-stations-philippines.com/love"
   ["FM - WRock - CEBU 96.3 📻🎶"]="https://onlineradio.ph/126-96-3-wrock.html"
   ["FM - Fresh Philippines 📻🎶"]="https://onlineradio.ph/553-fresh-fm.html"
@@ -27,6 +27,8 @@ declare -A online_music=(
   ["YT - Korean Drama OST 📹🎶"]="https://youtube.com/playlist?list=PLUge_o9AIFp4HuA-A3e3ZqENh63LuRRlQ"
   ["YT - lofi hip hop radio beats 📹🎶"]="https://www.youtube.com/live/jfKfPfyJRdk?si=PnJIA9ErQIAw6-qd"
   ["YT - Relaxing Piano Jazz Music 🎹🎶"]="https://youtu.be/85UEqRat6E4?si=jXQL1Yp2VP_G6NSn"
+  ["YT - Worship 🎶"]="https://youtube/watch?v=hNGQ2AQWZ6Q&list=RDhNGQ2AQWZ6Q&start_radio=1"
+  ["YT - American Gospel 🎶"]="https://www.youtube.com/watch?v=mDAjtI7wGR4&list=RDmDAjtI7wGR4&start_radio=1"
 )
 
 # Populate local_music array with files from music directory and subdirectories
@@ -58,7 +60,7 @@ play_local_music() {
   # Find the corresponding file path based on user's choice and set that to play the song then continue on the list
   for (( i=0; i<"${#filenames[@]}"; ++i )); do
     if [ "${filenames[$i]}" = "$choice" ]; then
-		
+
 	    notification "$choice"
 
       # Play the selected local music file using mpv
@@ -90,7 +92,7 @@ play_online_music() {
   link="${online_music[$choice]}"
 
   notification "$choice"
-  
+
   # Play the selected online music using mpv
   mpv --shuffle --vid=no "$link"
 }
