@@ -3,25 +3,25 @@
 # Function to install vanilla sway
 install_vanilla_sway() {
     echo "Installing vanilla sway..."
-    bash ~/ArchDispManConf/install_scripts/vanilla_sway.sh
+    bash ./vanilla_sway.sh
 }
 
 # Function to install customized swayWM
 install_custom_sway() {
     echo "Installing G00380316 customized sway..."
-    bash ~/ArchDispManConf/install_scripts/custom_sway.sh
+    bash ./custom_sway.sh
 }
 
 # Function to install vanilla hyprland
 install_vanilla_hyprland() {
     echo "Installing vanilla hyprland..."
-    bash ~/ArchDispManConf/install_scripts/vanilla_hyprland.sh
+    bash ./vanilla_hyprland.sh
 }
 
 # Function to install customized hyprland
 install_custom_hyprland() {
     echo "Installing G00380316 customized hyprland..."
-    bash ~/ArchDispManConf/install_scripts/custom_hyprland.sh
+    bash ./custom_hyprland.sh
 }
 
 prompt_installation_choice() {
@@ -59,7 +59,7 @@ prompt_zsh_installation() {
     if [[ "$zsh_choice" == "y" || "$zsh_choice" == "Y" ]]; then
         echo "Running Post Script..."
         # Post install step (if required)
-bash ~/ArchDispManConf/install_scripts/postinstall.sh
+bash ./postinstall.sh
 echo "Post installation completed."
     else
         echo "Skipping Zsh installation."

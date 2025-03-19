@@ -60,7 +60,7 @@ bash ~/clone.sh
 
 echo "cloned the git repo"
 
-DIRECTORY="ArchDispManConf"
+DIRECTORY="Arch_Install"
 
 if [ ! -d "$DIRECTORY" ]; then
   echo "Error: Directory $DIRECTORY does not exist."
@@ -81,34 +81,34 @@ echo "
  |c|u|s|t|o|m| |s|c|r|i|p|t|
  +-+-+-+-+-+-+ +-+-+-+-+-+-+
 "
-cd ~/ArchDispManConf/install_scripts
+cd ~/Arch_Install/
 
 # Make setup.sh executable (if needed, though it's typically already executable)
 chmod +x setup.sh packages.sh devs.sh gdm.sh add_bashrc.sh printers.sh bluetooth.sh util.sh cleanup.sh
 
 # Run the setup script
-bash ~/ArchDispManConf/install_scripts/setup.sh
+bash ./setup.sh
 
-bash ~/ArchDispManConf/install_scripts/devs.sh
+bash ./devs.sh
 
 # Run the extra packages
-bash ~/ArchDispManConf/install_scripts/packages.sh
+bash ./packages.sh
 
 echo "Make sure a Display Manager is installed"
 
 # make sure gdm is installed
-bash ~/ArchDispManConf/install_scripts/gdm.sh
+bash ./gdm.sh
 
 # add bashrc question
-bash ~/ArchDispManConf/install_scripts/add_bashrc.sh
+bash ./add_bashrc.sh
 
-bash ~/ArchDispManConf/install_scripts/printers.sh
+bash ./printers.sh
 
-bash ~/ArchDispManConf/install_scripts/bluetooth.sh
+bash ./bluetooth.sh
 
-bash ~/ArchDispManConf/install_scripts/util.sh
+bash ./util.sh
 
-bash ~/ArchDispManConf/install_scripts/cleanup.sh
+bash ./cleanup.sh
 
 sudo ./AniInstall.sh
 
