@@ -22,6 +22,8 @@ declare -A online_music=(
 ["YT - Kenny G (All-Time Hits) 🎶"]="https://youtu.be/A_2XpZDzWnY?si=IDwls7LaisraRlp2"
 ["YT - Jireh Mix 🎶"]="https://youtube.com/playlist?list=PLGvkktFFaDOMQS0vAWVGGzF7846GCKf3G&si=bz4FE9L0UuF1qCP_"
 ["YT - Tiny Desk Favourites 🎶"]="https://youtube.com/playlist?list=PLmtas71NLwTfLDvQfo5dG5ggF771YuoOo&si=5ZtiB1OqGoNLwbrx"
+["YT - Favourite Worship Right Now!!!🎶"]="https://youtube.com/playlist?list=PLmtas71NLwTdV8sKDLYTShavvJk4OWq3p&si=9ZEAcwFe-djT1_oN"
+["YT - Favourite Songs Right Now!!!🎶"]="https://youtube.com/playlist?list=PLmtas71NLwTfW4FWFbsbb4I9YFwxhUc79&si=iXG0Er3c-Z69aNt1"
 ["FM - Easy Rock 96.3 📻🎶"]="https://radio-stations-philippines.com/easy-rock"
 ["FM - Easy Rock - Baguio 91.9 📻🎶"]="https://radio-stations-philippines.com/easy-rock-baguio"
 ["FM - Love Radio 90.7 📻🎶"]="https://radio-stations-philippines.com/love"
