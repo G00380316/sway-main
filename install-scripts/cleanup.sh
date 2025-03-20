@@ -122,9 +122,9 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
         bash ./sddm_theme.sh
     fi
 
-    echo "Making some dirs..."
-    mkdir -p ~/Pictures/ScreenShots/
-    echo "Made new dirs!"
+    # echo "Making some dirs..."
+    # mkdir -p ~/Pictures/ScreenShots/
+    # echo "Made new dirs!"
 
     echo "Automation done!!! Everything should be installed and tidy!"
 else

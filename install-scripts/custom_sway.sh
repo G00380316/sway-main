@@ -96,7 +96,7 @@ sudo systemctl enable --now tlp
 xdg-user-dirs-update
 
 # Create Screenshot directory
-mkdir -p ~/Screenshots/
+# mkdir -p ~/Screenshots/
 
 # Install Nerd Fonts
 bash ~/Arch_Install/install-scripts/nerdfonts.sh
