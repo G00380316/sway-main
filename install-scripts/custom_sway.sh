@@ -28,8 +28,8 @@ read_packages_from_file() {
 }
 
 # Read package lists
-read_packages_from_file "$HOME/Arch_Install/install_scripts/common_packages.txt" packages
-read_packages_from_file "$HOME/Arch_Install/install_scripts/yay_common_packages.txt" yay_packages
+read_packages_from_file "$HOME/Arch_Install/install-scripts/common_packages.txt" packages
+read_packages_from_file "$HOME/Arch_Install/install-scripts/yay_common_packages.txt" yay_packages
 
 # Function to install pacman packages if they are not already installed
 install_packages() {
@@ -99,10 +99,10 @@ xdg-user-dirs-update
 mkdir -p ~/Screenshots/
 
 # Install Nerd Fonts
-bash ~/Arch_Install/install_scripts/nerdfonts.sh
+bash ~/Arch_Install/install-scripts/nerdfonts.sh
 
 # Install NWG Look
-bash ~/Arch_Install/install_scripts/nwg-look
+bash ~/Arch_Install/install-scripts/nwg-look
 
 # Install Rofi-Wayland
 sudo pacman -S --noconfirm rofi
