@@ -40,9 +40,9 @@
 
 "custom/settings": {
 	"format": " ",
-	"on-click": "$HOME/.config/hypr/scripts/Kool_Quick_Settings.sh",
+	"on-click": "$HOME/.config/hypr/scripts/Quick_Settings.sh",
 	"tooltip": true,
-	"tooltip-format": "Launch KooL Hyprland Settings Menu",
+	"tooltip-format": "Launch Hyprland Settings Menu",
 },
 
 "custom/cycle_wall": {

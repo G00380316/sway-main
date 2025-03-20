@@ -102,7 +102,7 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_hypr-pkgs.log"
 
 # conflicting packages removal
 overall_failed=0
-printf "\n%s - ${SKY_BLUE}Removing some packages${RESET} as it conflicts with KooL's Hyprland Dots \n" "${NOTE}"
+printf "\n%s - ${SKY_BLUE}Removing some packages${RESET} as it conflicts with  Hyprland Dots \n" "${NOTE}"
 for PKG in "${uninstall[@]}"; do
   uninstall_package "$PKG" 2>&1 | tee -a "$LOG"
   if [ $? -ne 0 ]; then

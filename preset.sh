@@ -1,5 +1,3 @@
-# 💫 https://github.com/JaKooLit 💫 #
-
 # Define the options you want to preselect (either ON or OFF)
 # IMPORTANT: answer should be inside ""
 
@@ -39,10 +37,3 @@ xdph="ON"
 zsh="ON"
 ### add Pokemon color scripts to terminal 
 pokemon="ON"
-
-### This will install ASUSCTL & SUPERGFXCTL
-###-Installing on Asus ROG Laptops?
-rog="OFF"
-
-###-Download and Add pre-configured Hyprland dotfiles?
-dots="ON"

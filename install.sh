@@ -19,6 +19,8 @@ if ! command_exists git; then
     fi
 fi
 
+echo "Git is installed. Continuing with the script..."
+
 # Check if yay is installed, else attempt installation
 if ! command_exists yay; then
     echo "Yay is not installed. Attempting to install Yay..."
@@ -34,15 +36,13 @@ if ! command_exists yay; then
     fi
 fi
 
-# Check if libnewt is installed
-if ! command_exists whiptail; then
-    echo "libnewt is not installed. Installing..."
-    yay -S --noconfirm libnewt
-fi
+echo "Yay is installed. Continuing with the script..."
 
 # Clone the repository into the home directory
 chmod +x ~/clone.sh
 bash ~/clone.sh
+
+echo "Arch_Install directory cloned..."
 
 DIRECTORY="Arch_Install"
 
@@ -50,6 +50,18 @@ if [ ! -d "$DIRECTORY" ]; then
     echo "Error: Directory $DIRECTORY does not exist. Run the script again! ;)"
     exit 1
 fi
+
+echo "Directory $DIRECTORY exists. Continuing..."
+sleep 3
+clear
+
+echo "
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+
+ | | |G|0|0|3|8|0|3|1|6| | |
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+
+ |c|u|s|t|o|m| |s|c|r|i|p|t|
+ +-+-+-+-+-+-+ +-+-+-+-+-+-+
+"
 
 cd ~/Arch_Install/install-scripts/ || exit 1
 
@@ -59,16 +71,16 @@ chmod +x *.sh
 # Available scripts
 SCRIPTS=("setup.sh" "devs.sh" "packages.sh" "displaymanager.sh" "add_bashrc.sh" "printers.sh" "bluetooth.sh" "util.sh" "cleanup.sh" "displaylinkinstall.sh")
 
-# Display script list and prompt user
-echo "Available Scripts:"
-echo "0. All"
-echo "skip. Skip"
+# Display menu
+echo "Select scripts to run (multiple selections allowed, separate by space):"
+echo "0) All"
+echo "skip"
 for i in "${!SCRIPTS[@]}"; do
-    echo "$((i + 1)). ${SCRIPTS[$i]}"
+    echo "$((i + 1))) ${SCRIPTS[$i]}"
 done
 
-echo -n "Enter the numbers of the scripts you want to run (e.g., 0 or 1 2 3): "
-read -r CHOICES
+echo -n "Enter your choice: "
+read -ra CHOICES
 
 # Function to run a script
 run_script() {
@@ -77,12 +89,12 @@ run_script() {
 }
 
 # Run selected scripts
-if [[ "${CHOICES}" =~ "0" ]]; then
+if [[ "${CHOICES[*]}" =~ "0" ]]; then
     for script in "${SCRIPTS[@]}"; do
         run_script "$script"
     done
 elif [[ "${CHOICES}" != *"skip"* ]]; then
-    for choice in $CHOICES; do
+    for choice in "${CHOICES[@]}"; do
         index=$((choice - 1))
         if [ "$index" -ge 0 ] && [ "$index" -lt "${#SCRIPTS[@]}" ]; then
             run_script "${SCRIPTS[$index]}"
@@ -92,18 +104,19 @@ elif [[ "${CHOICES}" != *"skip"* ]]; then
     done
 fi
 
-# Run AniInstall if available
+cd ~/Arch_Install/
+
+# Run wallpapers and AniInstall if available
 if [ -f "./AniInstall.sh" ]; then
-    echo -n "Do you want to run Additional Install for Animations? (y/n): "
-    read -r run_aniinstall
-    if [[ "$run_aniinstall" == "y" || "$run_aniinstall" == "Y" ]]; then
+    read -p "Do you want to run Additional Install for Animations? (y/n): " choice
+    if [[ "$choice" == "y" ]]; then
         if [ -d "./wallpapers/" ]; then
             cp -r ./wallpapers/ ~/Pictures/
         fi
         if [ -f "./wallpapers.sh" ]; then
             bash ./wallpapers.sh
         fi
-        bash ./AniInstall.sh
+        bash ~/AniInstall.sh
     fi
 fi
 
