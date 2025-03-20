@@ -76,8 +76,8 @@ if command -v zsh >/dev/null; then
   fi
   
   # Copying the preconfigured zsh themes and profile
-  cp -r 'assets/.zshrc' ~/
-  cp -r 'assets/.zprofile' ~/
+  # cp -r 'assets/.zshrc' ~/
+  # cp -r 'assets/.zprofile' ~/
 
   # Check if the current shell is zsh
   if [[ "$SHELL" != *"zsh"* ]]; then

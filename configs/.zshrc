@@ -231,6 +231,7 @@ eval "$(zoxide init --cmd cd zsh)"
 
 # Rust Waybar module
 export PATH="$HOME/.config/waybar/waybar-module-pomodoro/target/release:$PATH"
+export PATH="$HOME/.config/waybar/waybar-module-pomodoro/target/debug:$PATH"
 
 # SideLoader
 export PATH="/home/enoch/Documents/Applications/Sideloader/Working Binaries:$PATH"

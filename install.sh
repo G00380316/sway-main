@@ -73,8 +73,10 @@ SCRIPTS=("setup.sh" "devs.sh" "packages.sh" "displaymanager.sh" "add_bashrc.sh" 
 
 # Display menu
 echo "Select scripts to run (multiple selections allowed, separate by space):"
-echo "0) All\n"
-echo "Type) skip\n"
+echo "0) All"
+echo " "
+echo "Type) skip"
+echo " "
 for i in "${!SCRIPTS[@]}"; do
     echo "$((i + 1))) ${SCRIPTS[$i]}"
 done
@@ -120,4 +122,4 @@ if [ -f "./AniInstall.sh" ]; then
     fi
 fi
 
-printf "\e[1;32mYou can now reboot! Thank you.\e[0m\n"
+printf "\e[1;32mYou can now reboot! Thank you. Consider running cleanup Script will tidy and configure some missing pieces\e[0m\n"

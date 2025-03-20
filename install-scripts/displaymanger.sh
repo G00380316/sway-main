@@ -65,7 +65,7 @@ check_slim() {
     service_active_and_enabled slim
 }
 
-# Function to ask if user wants to install GDM3 if another DM is installed
+# Function to ask if user wants to install SDDM if another DM is installed
 ask_install_sddm() {
     read -p "SDDM is recommended. Install? (y/n): " answer
     case $answer in
@@ -129,10 +129,10 @@ install_slim() {
 
 # Check which display managers are installed and enabled
 if check_gdm; then
-    echo "GDM3 is already installed and enabled (recommended)."
+    echo "GDM3 is already installed and enabled."
     exit 0
 elif check_sddm; then
-    echo "SDDM is already installed and enabled."
+    echo "SDDM is already installed and enabled (recommended)."
     ask_install_sddm
     exit 0
 elif check_lightdm; then
