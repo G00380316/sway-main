@@ -81,7 +81,7 @@ echo "
  |c|u|s|t|o|m| |s|c|r|i|p|t|
  +-+-+-+-+-+-+ +-+-+-+-+-+-+
 "
-cd ~/Arch_Install/
+cd ~/Arch_Install/install_scipts/
 
 # Make setup.sh executable (if needed, though it's typically already executable)
 chmod +x setup.sh packages.sh devs.sh gdm.sh add_bashrc.sh printers.sh bluetooth.sh util.sh cleanup.sh
@@ -96,8 +96,8 @@ bash ./packages.sh
 
 echo "Make sure a Display Manager is installed"
 
-# make sure gdm is installed
-bash ./gdm.sh
+# make sure a display manager is installed
+bash ./displaymanager.sh
 
 # add bashrc question
 bash ./add_bashrc.sh
@@ -109,6 +109,10 @@ bash ./bluetooth.sh
 bash ./util.sh
 
 bash ./cleanup.sh
+
+cp -r ./wallpapers/ ~/Pictures/
+
+sudo ./wallpapers.sh
 
 sudo ./AniInstall.sh
 

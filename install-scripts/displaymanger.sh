@@ -66,23 +66,31 @@ check_slim() {
 }
 
 # Function to ask if user wants to install GDM3 if another DM is installed
-ask_install_gdm() {
-    read -p "GDM3 is recommended. Install? (y/n): " answer
+ask_install_sddm() {
+    read -p "SDDM is recommended. Install? (y/n): " answer
     case $answer in
         [yY])
             sudo pacman -R --noconfirm ly
             sudo pacman -R --noconfirm slim
             sudo pacman -R --noconfirm lxdm
-            sudo pacman -R --noconfirm sddm
             sudo pacman -R --noconfirm lightdm
+            sudo pacman -R --noconfirm gdm
 
-            install_gdm
+            install_sddm
             ;;
         *)
             echo "Okay, exiting."
             exit 0
             ;;
     esac
+}
+
+# Function to install and enable SDDM
+install_sddm() {
+    echo "Installing minimal SDDM (recommended)..."
+    sudo $PACKAGE_COMMAND sddm
+    sudo systemctl enable sddm
+    echo "SDDM has been installed and enabled."
 }
 
 # Function to install and enable GDM3
@@ -95,17 +103,9 @@ install_gdm() {
     echo "GDM3 has been installed and enabled."
 }
 
-# Function to install and enable SDDM
-install_sddm() {
-    echo "Installing minimal SDDM..."
-    sudo $PACKAGE_COMMAND sddm
-    sudo systemctl enable sddm
-    echo "SDDM has been installed and enabled."
-}
-
 # Function to install and enable LightDM
 install_lightdm() {
-    echo "Installing LightDM (recommended)..."
+    echo "Installing LightDM..."
     sudo $PACKAGE_COMMAND lightdm
     sudo systemctl enable lightdm
     echo "LightDM has been installed and enabled."
@@ -133,23 +133,23 @@ if check_gdm; then
     exit 0
 elif check_sddm; then
     echo "SDDM is already installed and enabled."
-    ask_install_gdm
+    ask_install_sddm
     exit 0
 elif check_lightdm; then
     echo "LightDM is already installed and enabled."
-    ask_install_gdm
+    ask_install_sddm
     exit 0
 elif check_lxdm; then
     echo "LXDM is already installed and enabled."
-    ask_install_gdm
+    ask_install_sddm
     exit 0
 elif check_ly; then
     echo "Ly is already installed and enabled."
-    ask_install_gdm
+    ask_install_sddm
     exit 0
 elif check_slim; then
     echo "SLiM is already installed and enabled."
-    ask_install_gdm
+    ask_install_sddm
     exit 0
 fi
 
@@ -158,8 +158,8 @@ echo "No supported display manager found."
 
 # Menu for user choice
 echo "Choose an option (or '0' to skip):"
-echo "1. Install minimal GDM3 (recommended)"
-echo "2. Install minimal SDDM (recommended)"
+echo "1. Install minimal SDDM (recommended)"
+echo "2. Install minimal GDM"
 echo "3. Install LightDM"
 echo "4. Install LXDM"
 echo "5. Install SLiM"

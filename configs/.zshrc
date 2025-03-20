@@ -69,7 +69,7 @@ setopt hist_find_no_dups
 setopt correct
 
 ### Custom aliases and Keybinds ###
-alias ls='lsd'
+alias ls='lsd --color=auto'
 alias q='exit'
 alias qa='exit'
 alias l='ls -l'
@@ -133,7 +133,7 @@ bindkey -e
 # Add color support for ls and other commands
 if [ -x /usr/bin/dircolors ]; then
     eval "$(dircolors -b ~/.dircolors)"
-    alias ls='ls --color=auto'
+    # alias ls='ls --color=auto'
     alias grep='grep --color=auto'
 fi
 
