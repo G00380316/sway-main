@@ -7,6 +7,21 @@ service_active_and_enabled() {
     sudo systemctl is-active --quiet "$service" && sudo systemctl is-enabled --quiet "$service"
 }
 
+# Function to detect the package manager
+detect_package_manager() {
+    if command -v pacman &> /dev/null; then
+        PACKAGE_MANAGER="pacman"
+        PACKAGE_COMMAND="sudo pacman -S --noconfirm"
+    elif command -v apt &> /dev/null; then
+        PACKAGE_MANAGER="apt"
+        PACKAGE_COMMAND="sudo apt install -y"
+    else
+        echo "No supported package manager found. Please install either pacman or apt."
+        exit 1
+    fi
+}
+
+
 # Check if SDDM is installed and enabled
 check_sddm() {
     service_active_and_enabled sddm
@@ -34,7 +49,7 @@ ask_enable_sddm() {
 
 # Function to ask if user wants to install and enable SDDM if another DM is installed
 ask_install_sddm() {
-    read -p "SDDM is recommended. Do you want to enable it? (y/n): " answer
+    read -p "SDDM is recommended. Do you want to install and then enable it? (y/n): " answer
     case $answer in
         [yY])
             sudo systemctl disable ly
@@ -101,6 +116,7 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
         ask_enable_sddm
     else
         echo "SDDM is not installed or enabled."
+        detect_package_manager
         ask_install_sddm
     fi
 
