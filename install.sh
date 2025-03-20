@@ -5,12 +5,6 @@ command_exists() {
     command -v "$1" &> /dev/null
 }
 
-# Ensure script is run as root
-# if [ "$EUID" -ne 0 ]; then
-#     echo "Please run this script as root."
-#     exit 1
-# fi
-
 # Check if git is installed, else attempt installation
 if ! command_exists git; then
     echo "Git is not installed. Attempting to install Git..."
@@ -24,8 +18,6 @@ if ! command_exists git; then
         exit 1
     fi
 fi
-
-echo "Git is installed. Continuing with the script..."
 
 # Check if yay is installed, else attempt installation
 if ! command_exists yay; then
@@ -42,13 +34,15 @@ if ! command_exists yay; then
     fi
 fi
 
-echo "Yay is installed. Continuing with the script..."
+# Check if whiptail is installed, else attempt installation
+if ! command_exists whiptail; then
+    echo "Whiptail is not installed. Installing..."
+    yay -S --noconfirm libnewt
+fi
 
 # Clone the repository into the home directory
 chmod +x ~/clone.sh
 bash ~/clone.sh
-
-echo "cloned the git repo"
 
 DIRECTORY="Arch_Install"
 
@@ -57,19 +51,7 @@ if [ ! -d "$DIRECTORY" ]; then
     exit 1
 fi
 
-echo "Directory $DIRECTORY exists. Continuing..."
-sleep 3
-clear
-
-echo "
- +-+-+-+-+-+-+-+-+-+-+-+-+-+
- | | |G|0|0|3|8|0|3|1|6| | |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+
- |c|u|s|t|o|m| |s|c|r|i|p|t|
- +-+-+-+-+-+-+ +-+-+-+-+-+-+
-"
-
-cd ~/Arch_Install/install_scripts/ || exit 1
+cd ~/Arch_Install/install-scripts/ || exit 1
 
 # Make scripts executable
 chmod +x *.sh
@@ -77,29 +59,29 @@ chmod +x *.sh
 # Available scripts
 SCRIPTS=("setup.sh" "devs.sh" "packages.sh" "displaymanager.sh" "add_bashrc.sh" "printers.sh" "bluetooth.sh" "util.sh" "cleanup.sh" "displaylinkinstall.sh")
 
-# Display menu
-echo "Select scripts to run (multiple selections allowed, separate by space):"
-echo "0) All"
+# Display menu using whiptail
+MENU_OPTIONS=(0 "All" "skip" "Skip")
 for i in "${!SCRIPTS[@]}"; do
-    echo "$((i + 1))) ${SCRIPTS[$i]}"
+    MENU_OPTIONS+=("$((i + 1))" "${SCRIPTS[$i]}")
 done
 
-echo -n "Enter your choice: "
-read -ra CHOICES
+CHOICES=$(whiptail --title "Select Scripts to Run" \
+                --checklist "Choose the scripts to run:" 20 78 10 \
+                "${MENU_OPTIONS[@]}" 3>&1 1>&2 2>&3)
 
-# Function to run a script with high privileges
+# Function to run a script
 run_script() {
     echo "Running $1..."
-    sudo bash ./$1
+    bash ./$1
 }
 
 # Run selected scripts
-if [[ "${CHOICES[*]}" =~ "0" ]]; then
+if [[ "${CHOICES}" =~ "0" ]]; then
     for script in "${SCRIPTS[@]}"; do
         run_script "$script"
     done
-else
-    for choice in "${CHOICES[@]}"; do
+elif [[ "${CHOICES}" != *"skip"* ]]; then
+    for choice in $CHOICES; do
         index=$((choice - 1))
         if [ "$index" -ge 0 ] && [ "$index" -lt "${#SCRIPTS[@]}" ]; then
             run_script "${SCRIPTS[$index]}"
@@ -109,18 +91,18 @@ else
     done
 fi
 
-# Run wallpapers and AniInstall if available
+# Run AniInstall if available
 if [ -f "./AniInstall.sh" ]; then
-    read -p "Do you want to run Additional Install for Animations? (y/n): " choice
-    if [[ "$choice" == "y" ]]; then
+    if (whiptail --title "AniInstall" --yesno "Do you want to run Additional Install for Animations?" 8 78); then
         if [ -d "./wallpapers/" ]; then
             cp -r ./wallpapers/ ~/Pictures/
         fi
         if [ -f "./wallpapers.sh" ]; then
-            sudo bash ./wallpapers.sh
+            bash ./wallpapers.sh
         fi
-        sudo bash ./AniInstall.sh
+        bash ./AniInstall.sh
     fi
 fi
 
 printf "\e[1;32mYou can now reboot! Thank you.\e[0m\n"
+
