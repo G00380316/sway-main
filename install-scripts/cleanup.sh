@@ -32,6 +32,34 @@ ask_enable_sddm() {
     esac
 }
 
+# Function to ask if user wants to install and enable SDDM if another DM is installed
+ask_install_sddm() {
+    read -p "SDDM is recommended. Do you want to enable it? (y/n): " answer
+    case $answer in
+        [yY])
+            sudo systemctl disable ly
+            sudo systemctl disable slim
+            sudo systemctl disable lxdm
+            sudo systemctl disable lightdm
+            sudo systemctl disable gdm
+
+            install_sddm
+            ;;
+        *)
+            echo "Okay, exiting."
+            exit 0
+            ;;
+    esac
+}
+
+# Function to install and enable SDDM
+install_sddm() {
+    echo "Installing minimal SDDM (recommended)..."
+    sudo $PACKAGE_COMMAND sddm
+    sudo systemctl enable sddm
+    echo "SDDM has been installed and enabled."
+}
+
 enable_sddm() {
     sudo systemctl enable sddm
     echo "SDDM has been enabled."
@@ -42,7 +70,7 @@ read response
 
 if [[ "$response" =~ ^[Yy]$ ]]; then
     echo "Automating some tasks for you..."
-    
+
     echo "Removing some directories..."
     sudo rm -rf ~/go
     sudo rm -rf ~/JetBrainsMono
@@ -73,7 +101,7 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
         ask_enable_sddm
     else
         echo "SDDM is not installed or enabled."
-        ask_enable_sddm
+        ask_install_sddm
     fi
 
     echo "Making some dirs..."
