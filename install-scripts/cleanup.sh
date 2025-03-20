@@ -23,7 +23,6 @@ ask_enable_sddm() {
             sudo systemctl disable lightdm
             sudo systemctl disable gdm
 
-
             enable_sddm
             ;;
         *)
@@ -35,42 +34,55 @@ ask_enable_sddm() {
 
 enable_sddm() {
     sudo systemctl enable sddm
-    echo "SDDM h enabled."
+    echo "SDDM has been enabled."
 }
 
 echo "Would you like to run automated Clean-up? (y/n)"
 read response
 
 if [[ "$response" =~ ^[Yy]$ ]]; then
-    echo "Automating some for you..."
-        echo "Removing some dir..."
-            sudo rm -rf ~/go
-            sudo rm -rf ~/JetBrainsMono
-            sudo rm -rf ~/install.sh
-            sudo rm -rf ~/clone.sh
-        echo "Dirs removed!"
-        echo "Removing unwanted extra packages..."
-            sudo pacman -Rns $(pacman -Qdtq)
-            yay -Rns $(yay -Qdtq)
-        echo "Removed unwanted extra packages!"
-        echo "Building Neovim Plugins"
-            cd ~/.local/share/nvim/lazy/command-t/lua/wincent/commandt/lib
-            make clean
-            make
-        echo "Built Neovim Plugins!"
-        echo "Building Waybar Plugins"
-            cd ~/.config/waybar/waybar-module-pomodoro/
-            cargo build
-        echo "Built Waybar Plugins!"
-        echo "Checking if SDDM is installed..."
+    echo "Automating some tasks for you..."
+    
+    echo "Removing some directories..."
+    sudo rm -rf ~/go
+    sudo rm -rf ~/JetBrainsMono
+    sudo rm -rf ~/install.sh
+    sudo rm -rf ~/clone.sh
+    echo "Dirs removed!"
 
-        if check_sddm; then
+    echo "Removing unwanted extra packages..."
+    sudo pacman -Rns $(pacman -Qdtq)
+    yay -Rns $(yay -Qdtq)
+    echo "Removed unwanted extra packages!"
+
+    echo "Building Neovim Plugins..."
+    cd ~/.local/share/nvim/lazy/command-t/lua/wincent/commandt/lib
+    make clean
+    make
+    echo "Built Neovim Plugins!"
+
+    echo "Building Waybar Plugins..."
+    cd ~/.config/waybar/waybar-module-pomodoro/
+    cargo build
+    echo "Built Waybar Plugins!"
+
+    echo "Checking if SDDM is installed..."
+
+    if check_sddm; then
         echo "SDDM is already installed and enabled (recommended)."
-            ask_install_sddm
-        exit 0
+        ask_enable_sddm
+    else
+        echo "SDDM is not installed or enabled."
+        ask_enable_sddm
+    fi
 
-        echo "Making some dirs..."
-            mkdir -p ~/Pictures/ScreenShots/
-        echo "Made new dirs!"
+    echo "Making some dirs..."
+    mkdir -p ~/Pictures/ScreenShots/
+    echo "Made new dirs!"
+
     echo "Automation done!!! Everything should be installed and tidy!"
+else
+    echo "Exiting without cleanup."
+fi
+
 exit 0
