@@ -2,7 +2,7 @@
 
 # SDDM themes #
 
-source_theme="https://codeberg.org/JaKooLit/sddm-sequoia"
+source_theme="https://codeberg.org/G00380316/sddm-sequoia"
 theme_name="sequoia_2"
 
 ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##

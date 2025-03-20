@@ -46,7 +46,7 @@ while true; do
   case $WALL in
     [Yy])
       echo "${NOTE} Downloading additional wallpapers..."
-      if git clone "https://github.com/JaKooLit/Wallpaper-Bank.git"; then
+      if git clone "https://github.com/G00380316/Wallpaper-Bank.git"; then
           echo "${OK} Wallpapers downloaded successfully." 2>&1 | tee -a "$LOG"
 
           # Check if wallpapers directory exists and create it if not
