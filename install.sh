@@ -69,7 +69,7 @@ echo "
  +-+-+-+-+-+-+ +-+-+-+-+-+-+
 "
 
-cd ~/Arch_Install/install_scipts/ || exit 1
+cd ~/Arch_Install/install_scripts/ || exit 1
 
 # Make scripts executable
 chmod +x *.sh
