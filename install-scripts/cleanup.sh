@@ -22,7 +22,7 @@ ask_enable_sddm() {
             sudo systemctl disable lxdm
             sudo systemctl disable lightdm
             sudo systemctl disable gdm
-    
+
 
             enable_sddm
             ;;
@@ -73,8 +73,3 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
             mkdir -p ~/Pictures/ScreenShots/
         echo "Made new dirs!"
     echo "Automation done!!! Everything should be installed and tidy!"
-elif [[ "$response" =~ ^[Nn]$ ]]; then
-    echo "Automation will not be run."
-else
-    echo "Invalid input. Please enter 'y' or 'n'."
-fi
