@@ -116,7 +116,7 @@ if [ -f "./AniInstall.sh" ]; then
         if [ -f "./wallpapers.sh" ]; then
             bash ./wallpapers.sh
         fi
-        bash ~/AniInstall.sh
+        bash ./AniInstall.sh
     fi
 fi
 
