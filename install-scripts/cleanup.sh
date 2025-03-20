@@ -73,3 +73,4 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
             mkdir -p ~/Pictures/ScreenShots/
         echo "Made new dirs!"
     echo "Automation done!!! Everything should be installed and tidy!"
+exit 0
