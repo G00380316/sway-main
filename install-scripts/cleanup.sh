@@ -1,31 +1,41 @@
 #!/bin/bash
 
-# Function to detect the package manager
-detect_package_manager() {
-    if command -v pacman &> /dev/null; then
-        PACKAGE_MANAGER="pacman"
-        PACKAGE_COMMAND="sudo pacman -S --noconfirm"
-    elif command -v apt &> /dev/null; then
-        PACKAGE_MANAGER="apt"
-        PACKAGE_COMMAND="sudo apt install -y"
-    else
-        echo "No supported package manager found. Please install either pacman or apt."
-        exit 1
-    fi
+# Function to check if a service is active and enabled
+service_active_and_enabled() {
+    local service="$1"
+    # Check if service is active and enabled
+    sudo systemctl is-active --quiet "$service" && sudo systemctl is-enabled --quiet "$service"
 }
 
-# Function to detect the package manager
-detect_package_manager() {
-    if command -v pacman &> /dev/null; then
-        PACKAGE_MANAGER="pacman"
-        PACKAGE_COMMAND="sudo pacman -S --noconfirm"
-    elif command -v apt &> /dev/null; then
-        PACKAGE_MANAGER="apt"
-        PACKAGE_COMMAND="sudo apt install -y"
-    else
-        echo "No supported package manager found. Please install either pacman or apt."
-        exit 1
-    fi
+# Check if SDDM is installed and enabled
+check_sddm() {
+    service_active_and_enabled sddm
+}
+
+# Function to ask if user wants to enable SDDM if another DM is installed
+ask_enable_sddm() {
+    read -p "SDDM is recommended. Do you want to enable it? (y/n): " answer
+    case $answer in
+        [yY])
+            sudo systemctl disable ly
+            sudo systemctl disable slim
+            sudo systemctl disable lxdm
+            sudo systemctl disable lightdm
+            sudo systemctl disable gdm
+    
+
+            enable_sddm
+            ;;
+        *)
+            echo "Okay, exiting."
+            exit 0
+            ;;
+    esac
+}
+
+enable_sddm() {
+    sudo systemctl enable sddm
+    echo "SDDM h enabled."
 }
 
 echo "Would you like to run automated Clean-up? (y/n)"
@@ -53,64 +63,11 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
             cargo build
         echo "Built Waybar Plugins!"
         echo "Checking if SDDM is installed..."
-            # Detect the package manager
-        detect_package_manager
 
-        # Check if GDM3 is installed and enabled
-        check_gdm() {
-            service_active_and_enabled gdm
-        }
-
-        # Check if SDDM is installed and enabled
-        check_sddm() {
-            service_active_and_enabled sddm
-        }
-
-        # Check if LightDM is installed and enabled
-        check_lightdm() {
-            service_active_and_enabled lightdm
-        }
-
-        # Check if LXDM is installed and enabled
-        check_lxdm() {
-            service_active_and_enabled lxdm
-        }
-
-        # Check if Ly is installed and enabled
-        check_ly() {
-            service_active_and_enabled ly
-        }
-
-        # Check if SLiM is installed and enabled
-        check_slim() {
-            service_active_and_enabled slim
-        }
-
-        # Function to ask if user wants to enable SDDM if another DM is installed
-        ask_install_sddm() {
-            read -p "SDDM is recommended. Do you want to enable it? (y/n): " answer
-            case $answer in
-                [yY])
-                    sudo systemctl disable ly
-                    sudo systemctl disable slim
-                    sudo systemctl disable lxdm
-                    sudo systemctl disable lightdm
-                    sudo systemctl disable gdm
-            
-
-                    enable_sddm
-                    ;;
-                *)
-                    echo "Okay, exiting."
-                    exit 0
-                    ;;
-            esac
-        }
-
-        enable_sddm() {
-            sudo systemctl enable sddm
-            echo "SDDM h enabled."
-        }
+        if check_sddm; then
+        echo "SDDM is already installed and enabled (recommended)."
+            ask_install_sddm
+        exit 0
 
         echo "Making some dirs..."
             mkdir -p ~/Pictures/ScreenShots/
