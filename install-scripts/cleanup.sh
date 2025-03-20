@@ -118,6 +118,8 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
         echo "SDDM is not installed or enabled."
         detect_package_manager
         ask_install_sddm
+        bash ./sddm.sh
+        bash ./sddm_theme.sh
     fi
 
     echo "Making some dirs..."
