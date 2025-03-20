@@ -73,8 +73,8 @@ SCRIPTS=("setup.sh" "devs.sh" "packages.sh" "displaymanager.sh" "add_bashrc.sh" 
 
 # Display menu
 echo "Select scripts to run (multiple selections allowed, separate by space):"
-echo "0) All"
-echo "skip"
+echo "0) All\n"
+echo "Type) skip\n"
 for i in "${!SCRIPTS[@]}"; do
     echo "$((i + 1))) ${SCRIPTS[$i]}"
 done
