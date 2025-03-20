@@ -6,10 +6,10 @@ command_exists() {
 }
 
 # Ensure script is run as root
-if [ "$EUID" -ne 0 ]; then
-    echo "Please run this script as root."
-    exit 1
-fi
+# if [ "$EUID" -ne 0 ]; then
+#     echo "Please run this script as root."
+#     exit 1
+# fi
 
 # Check if git is installed, else attempt installation
 if ! command_exists git; then
