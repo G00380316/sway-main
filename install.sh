@@ -1,61 +1,51 @@
 #!/bin/bash
 
-# Check if git is installed
-if ! command -v git &> /dev/null; then
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" &> /dev/null
+}
+
+# Ensure script is run as root
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run this script as root."
+    exit 1
+fi
+
+# Check if git is installed, else attempt installation
+if ! command_exists git; then
     echo "Git is not installed. Attempting to install Git..."
-
-    # Use pacman to install git
-    if command -v pacman &> /dev/null; then
-        sudo pacman -Sy
-        sudo pacman -S --noconfirm git
-
+    if command_exists pacman; then
+        pacman -Sy --noconfirm
+        pacman -S --noconfirm git
         echo "Git installation successful. Run this script again to use git."
-
         exit 1
     else
-        echo "Cannot install Git automatically using pacman. Please install Git manually and run this script again."
-        exit 1
-    fi
-
-    # Check again if git is installed after attempting to install
-    if ! command -v git &> /dev/null; then
-        echo "Git installation failed. Please install Git manually and run this script again."
+        echo "Cannot install Git automatically. Please install Git manually."
         exit 1
     fi
 fi
 
 echo "Git is installed. Continuing with the script..."
 
-# Check if git is installed
-if ! command -v yay &> /dev/null; then
+# Check if yay is installed, else attempt installation
+if ! command_exists yay; then
     echo "Yay is not installed. Attempting to install Yay..."
-
-    # Use pacman to install yay
-    if command -v pacman &> /dev/null; then
-        git clone https://aur.archlinux.org/yay.git
-        mv yay $HOME/.config
-        cd $HOME/.config/yay
+    if command_exists pacman; then
+        git clone https://aur.archlinux.org/yay.git $HOME/.config/yay
+        cd $HOME/.config/yay || exit 1
         makepkg -si --noconfirm
-
         echo "Yay installation successful. Run this script again to use yay."
-
         exit 1
-
     else
-        echo "Cannot install Yay automatically using pacman. Please install Yay manually and run this script again."
-        exit 1
-    fi
-
-    # Check again if git is installed after attempting to install
-    if ! command -v yay &> /dev/null; then
-        echo "Yay installation failed. Please install Yay manually and run this script again."
+        echo "Cannot install Yay automatically. Please install Yay manually."
         exit 1
     fi
 fi
 
+echo "Yay is installed. Continuing with the script..."
+
 # Clone the repository into the home directory
 chmod +x ~/clone.sh
-
 bash ~/clone.sh
 
 echo "cloned the git repo"
@@ -63,15 +53,12 @@ echo "cloned the git repo"
 DIRECTORY="Arch_Install"
 
 if [ ! -d "$DIRECTORY" ]; then
-  echo "Error: Directory $DIRECTORY does not exist."
-  echo "Don't worry run script again!!! ;) "
-  exit 1
+    echo "Error: Directory $DIRECTORY does not exist. Run the script again! ;)"
+    exit 1
 fi
 
 echo "Directory $DIRECTORY exists. Continuing..."
-
-wait 3
-
+sleep 3
 clear
 
 echo "
@@ -81,40 +68,59 @@ echo "
  |c|u|s|t|o|m| |s|c|r|i|p|t|
  +-+-+-+-+-+-+ +-+-+-+-+-+-+
 "
-cd ~/Arch_Install/install_scipts/
 
-# Make setup.sh executable (if needed, though it's typically already executable)
-chmod +x setup.sh packages.sh devs.sh gdm.sh add_bashrc.sh printers.sh bluetooth.sh util.sh cleanup.sh
+cd ~/Arch_Install/install_scipts/ || exit 1
 
-# Run the setup script
-bash ./setup.sh
+# Make scripts executable
+chmod +x *.sh
 
-bash ./devs.sh
+# Available scripts
+SCRIPTS=("setup.sh" "devs.sh" "packages.sh" "displaymanager.sh" "add_bashrc.sh" "printers.sh" "bluetooth.sh" "util.sh" "cleanup.sh" "displaylinkinstall.sh")
 
-# Run the extra packages
-bash ./packages.sh
+# Display menu
+echo "Select scripts to run (multiple selections allowed, separate by space):"
+echo "0) All"
+for i in "${!SCRIPTS[@]}"; do
+    echo "$((i + 1))) ${SCRIPTS[$i]}"
+done
 
-echo "Make sure a Display Manager is installed"
+echo -n "Enter your choice: "
+read -ra CHOICES
 
-# make sure a display manager is installed
-bash ./displaymanager.sh
+# Function to run a script with high privileges
+run_script() {
+    echo "Running $1..."
+    sudo bash ./$1
+}
 
-# add bashrc question
-bash ./add_bashrc.sh
+# Run selected scripts
+if [[ "${CHOICES[*]}" =~ "0" ]]; then
+    for script in "${SCRIPTS[@]}"; do
+        run_script "$script"
+    done
+else
+    for choice in "${CHOICES[@]}"; do
+        index=$((choice - 1))
+        if [ "$index" -ge 0 ] && [ "$index" -lt "${#SCRIPTS[@]}" ]; then
+            run_script "${SCRIPTS[$index]}"
+        else
+            echo "Invalid choice: $choice"
+        fi
+    done
+fi
 
-bash ./printers.sh
+# Run wallpapers and AniInstall if available
+if [ -f "./AniInstall.sh" ]; then
+    read -p "Do you want to run Additional Install for Animations? (y/n): " choice
+    if [[ "$choice" == "y" ]]; then
+        if [ -d "./wallpapers/" ]; then
+            cp -r ./wallpapers/ ~/Pictures/
+        fi
+        if [ -f "./wallpapers.sh" ]; then
+            sudo bash ./wallpapers.sh
+        fi
+        sudo bash ./AniInstall.sh
+    fi
+fi
 
-bash ./bluetooth.sh
-
-bash ./util.sh
-
-bash ./cleanup.sh
-
-cp -r ./wallpapers/ ~/Pictures/
-
-sudo ./wallpapers.sh
-
-sudo ./AniInstall.sh
-
-printf "\e[1;32mYou can now reboot! Thanks you.\e[0m\n"
-
+printf "\e[1;32mYou can now reboot! Thank you.\e[0m\n"
