@@ -34,9 +34,9 @@ if ! command_exists yay; then
     fi
 fi
 
-# Check if whiptail is installed, else attempt installation
+# Check if libnewt is installed
 if ! command_exists whiptail; then
-    echo "Whiptail is not installed. Installing..."
+    echo "libnewt is not installed. Installing..."
     yay -S --noconfirm libnewt
 fi
 
@@ -59,15 +59,16 @@ chmod +x *.sh
 # Available scripts
 SCRIPTS=("setup.sh" "devs.sh" "packages.sh" "displaymanager.sh" "add_bashrc.sh" "printers.sh" "bluetooth.sh" "util.sh" "cleanup.sh" "displaylinkinstall.sh")
 
-# Display menu using whiptail
-MENU_OPTIONS=(0 "All" "skip" "Skip")
+# Display script list and prompt user
+echo "Available Scripts:"
+echo "0. All"
+echo "skip. Skip"
 for i in "${!SCRIPTS[@]}"; do
-    MENU_OPTIONS+=("$((i + 1))" "${SCRIPTS[$i]}")
+    echo "$((i + 1)). ${SCRIPTS[$i]}"
 done
 
-CHOICES=$(whiptail --title "Select Scripts to Run" \
-                --checklist "Choose the scripts to run:" 20 78 10 \
-                "${MENU_OPTIONS[@]}" 3>&1 1>&2 2>&3)
+echo -n "Enter the numbers of the scripts you want to run (e.g., 0 or 1 2 3): "
+read -r CHOICES
 
 # Function to run a script
 run_script() {
@@ -93,7 +94,9 @@ fi
 
 # Run AniInstall if available
 if [ -f "./AniInstall.sh" ]; then
-    if (whiptail --title "AniInstall" --yesno "Do you want to run Additional Install for Animations?" 8 78); then
+    echo -n "Do you want to run Additional Install for Animations? (y/n): "
+    read -r run_aniinstall
+    if [[ "$run_aniinstall" == "y" || "$run_aniinstall" == "Y" ]]; then
         if [ -d "./wallpapers/" ]; then
             cp -r ./wallpapers/ ~/Pictures/
         fi
@@ -105,4 +108,3 @@ if [ -f "./AniInstall.sh" ]; then
 fi
 
 printf "\e[1;32mYou can now reboot! Thank you.\e[0m\n"
-
