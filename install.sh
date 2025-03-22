@@ -89,10 +89,10 @@ while true; do
     echo " "
     echo "Select scripts to run (multiple selections allowed, separate by space):"
     echo " "
+    echo "all or 0) All"
     echo "skip) Skip"
     echo "quit) Exit the script"
     echo " "
-    echo "0) All"
     for i in "${!SCRIPTS[@]}"; do
         echo "$((i + 1))) ${SCRIPTS[$i]}"
     done
@@ -128,7 +128,7 @@ while true; do
                 break
             fi
         done
-        
+
         if [ "$valid_input" = true ]; then
             # Run selected scripts
             for choice in "${CHOICES[@]}"; do
