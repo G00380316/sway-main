@@ -11,6 +11,7 @@ if ! command_exists git; then
     if command_exists pacman; then
         pacman -Sy --noconfirm
         pacman -S --noconfirm git
+        if command_exists git; then 
         echo "Git installation successful. Run this script again to use git."
         exit 1
     else
@@ -28,6 +29,7 @@ if ! command_exists yay; then
         git clone https://aur.archlinux.org/yay.git $HOME/.config/yay
         cd $HOME/.config/yay || exit 1
         makepkg -si --noconfirm
+        if command_exists yay; then
         echo "Yay installation successful. Run this script again to use yay."
         exit 1
     else
@@ -38,11 +40,13 @@ fi
 
 echo "Yay is installed. Continuing with the script..."
 
-# Clone the repository into the home directory
-chmod +x ~/clone.sh
-bash ~/clone.sh
+git clone https://github.com/G00380316/Arch_Install.git
 
-echo "Arch_Install directory cloned..."
+if [ -d "Arch_Install" ]; then
+    echo "Arch_Install directory cloned..."
+else
+    echo "Arch_Install directory clone failed, try runnning script again..."
+fi
 
 DIRECTORY="Arch_Install"
 
