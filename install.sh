@@ -86,16 +86,16 @@ run_script() {
 while true; do
     # Display Menu
     echo "Select scripts to run (multiple selections allowed, separate by space):"
-    echo ""
+    echo " "
     echo "skip) Skip"
     echo "quit) Exit the script"
-    echo ""
+    echo " "
     echo "0) All"
     for i in "${!SCRIPTS[@]}"; do
         echo "$((i + 1))) ${SCRIPTS[$i]}"
     done
 
-    echo ""
+    echo " "
     echo -n "Enter your choice: "
     read -ra CHOICES
 
