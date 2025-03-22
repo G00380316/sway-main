@@ -11,7 +11,7 @@ if ! command_exists git; then
     if command_exists pacman; then
         sudo pacman -Sy --noconfirm
         sudo pacman -S --noconfirm git
-        if command_exists git; then 
+        if command_exists git; then
             echo "Git installation successful. Run this script again to use git."
             exit 1
         else
@@ -49,12 +49,6 @@ else
     git clone https://github.com/G00380316/Arch_Install.git "$HOME/Arch_Install"
 fi
 
-if [ -d "Arch_Install" ]; then
-    echo "Arch_Install directory cloned..."
-else
-    echo "Arch_Install directory clone failed, try runnning script again..."
-fi
-
 DIRECTORY="Arch_Install"
 
 if [ ! -d "$DIRECTORY" ]; then
@@ -84,10 +78,10 @@ SCRIPTS=("setup.sh" "devs.sh" "packages.sh" "displaymanager.sh" "add_bashrc.sh" 
 
 # Display menu
 echo "Select scripts to run (multiple selections allowed, separate by space):"
+echo " "
+echo "?) skip"
+echo " "
 echo "0) All"
-echo " "
-echo "Type) skip"
-echo " "
 for i in "${!SCRIPTS[@]}"; do
     echo "$((i + 1))) ${SCRIPTS[$i]}"
 done
@@ -102,11 +96,11 @@ run_script() {
 }
 
 # Run selected scripts
-if [[ "${CHOICES[*]}" =~ "0" ]]; then
+if [[ " ${CHOICES[*]} " =~ " 0 " || " ${CHOICES[*]} " =~ " all " ]]; then
     for script in "${SCRIPTS[@]}"; do
         run_script "$script"
     done
-elif [[ ! " ${CHOICES[*]} " =~ " skip " ]]; then
+elif [[ ! " ${CHOICES[*]} " =~ "?" || ! " ${CHOICES[*]} " =~ " skip " ]]; then
     for choice in "${CHOICES[@]}"; do
         index=$((choice - 1))
         if [ "$index" -ge 0 ] && [ "$index" -lt "${#SCRIPTS[@]}" ]; then
