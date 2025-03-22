@@ -49,7 +49,7 @@ else
     git clone https://github.com/G00380316/Arch_Install.git "$HOME/Arch_Install"
 fi
 
-DIRECTORY="~/Arch_Install"
+DIRECTORY="$HOME/Arch_Install"
 
 if [ ! -d "$DIRECTORY" ]; then
     echo "Error: Directory $DIRECTORY does not exist. Run the script again! ;)"
