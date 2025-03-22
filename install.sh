@@ -9,14 +9,15 @@ command_exists() {
 if ! command_exists git; then
     echo "Git is not installed. Attempting to install Git..."
     if command_exists pacman; then
-        pacman -Sy --noconfirm
-        pacman -S --noconfirm git
+        sudo pacman -Sy --noconfirm
+        sudo pacman -S --noconfirm git
         if command_exists git; then 
-        echo "Git installation successful. Run this script again to use git."
-        exit 1
-    else
-        echo "Cannot install Git automatically. Please install Git manually."
-        exit 1
+            echo "Git installation successful. Run this script again to use git."
+            exit 1
+        else
+            echo "Cannot install Git automatically. Please install Git manually."
+            exit 1
+        fi
     fi
 fi
 
@@ -26,15 +27,16 @@ echo "Git is installed. Continuing with the script..."
 if ! command_exists yay; then
     echo "Yay is not installed. Attempting to install Yay..."
     if command_exists pacman; then
-        git clone https://aur.archlinux.org/yay.git $HOME/.config/yay
-        cd $HOME/.config/yay || exit 1
+        git clone https://aur.archlinux.org/yay.git "$HOME/.config/yay"
+        cd "$HOME/.config/yay" || exit 1
         makepkg -si --noconfirm
         if command_exists yay; then
-        echo "Yay installation successful. Run this script again to use yay."
-        exit 1
-    else
-        echo "Cannot install Yay automatically. Please install Yay manually."
-        exit 1
+            echo "Yay installation successful. Run this script again to use yay."
+            exit 1
+        else
+            echo "Cannot install Yay automatically. Please install Yay manually."
+            exit 1
+        fi
     fi
 fi
 
