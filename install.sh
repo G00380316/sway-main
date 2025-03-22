@@ -79,7 +79,7 @@ SCRIPTS=("setup.sh" "devs.sh" "packages.sh" "displaymanager.sh" "add_bashrc.sh" 
 # Display menu
 echo "Select scripts to run (multiple selections allowed, separate by space):"
 echo " "
-echo "?) skip"
+echo "skip) skip"
 echo " "
 echo "0) All"
 for i in "${!SCRIPTS[@]}"; do
@@ -100,7 +100,7 @@ if [[ " ${CHOICES[*]} " =~ " 0 " || " ${CHOICES[*]} " =~ " all " ]]; then
     for script in "${SCRIPTS[@]}"; do
         run_script "$script"
     done
-elif [[ ! " ${CHOICES[*]} " =~ "?" || ! " ${CHOICES[*]} " =~ " skip " ]]; then
+elif [[ ! " ${CHOICES[*]} " =~ " skip " ]]; then
     for choice in "${CHOICES[@]}"; do
         index=$((choice - 1))
         if [ "$index" -ge 0 ] && [ "$index" -lt "${#SCRIPTS[@]}" ]; then
