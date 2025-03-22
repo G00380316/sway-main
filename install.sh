@@ -76,40 +76,66 @@ chmod +x *.sh
 # Available scripts
 SCRIPTS=("setup.sh" "devs.sh" "packages.sh" "displaymanager.sh" "add_bashrc.sh" "printers.sh" "bluetooth.sh" "util.sh" "cleanup.sh" "displaylinkinstall.sh")
 
-# Display menu
-echo "Select scripts to run (multiple selections allowed, separate by space):"
-echo " "
-echo "skip) skip"
-echo " "
-echo "0) All"
-for i in "${!SCRIPTS[@]}"; do
-    echo "$((i + 1))) ${SCRIPTS[$i]}"
-done
-
-echo -n "Enter your choice: "
-read -ra CHOICES
-
 # Function to run a script
 run_script() {
     echo "Running $1..."
     bash ./$1
 }
 
-# Run selected scripts
-if [[ " ${CHOICES[*]} " =~ " 0 " || " ${CHOICES[*]} " =~ " all " ]]; then
-    for script in "${SCRIPTS[@]}"; do
-        run_script "$script"
+# Loop to keep asking the user for valid input
+while true; do
+    # Display Menu
+    echo "Select scripts to run (multiple selections allowed, separate by space):"
+    echo "0) All"
+    echo "skip) Skip"
+    echo "quit) Exit the script"
+    for i in "${!SCRIPTS[@]}"; do
+        echo "$((i + 1))) ${SCRIPTS[$i]}"
     done
-elif [[ ! " ${CHOICES[*]} " =~ " skip " ]]; then
-    for choice in "${CHOICES[@]}"; do
-        index=$((choice - 1))
-        if [ "$index" -ge 0 ] && [ "$index" -lt "${#SCRIPTS[@]}" ]; then
-            run_script "${SCRIPTS[$index]}"
+
+    echo -n "Enter your choice: "
+    read -ra CHOICES
+
+    # If the user chooses to quit
+    if [[ " ${CHOICES[*]} " =~ " quit " ]]; then
+        echo "Exiting the script. Goodbye!"
+        exit 0
+    fi
+
+    # Check if the user chose "0" or "all" for all scripts
+    if [[ " ${CHOICES[*]} " =~ " 0 " || " ${CHOICES[*]} " =~ " all " ]]; then
+        for script in "${SCRIPTS[@]}"; do
+            run_script "$script"
+        done
+        break  # Exit the loop after running all scripts
+    # If "skip" is chosen, skip the scripts
+    elif [[ " ${CHOICES[*]} " =~ " skip " ]]; then
+        echo "Skipping selected scripts."
+        break  # Exit the loop after skipping
+    # Handle invalid input
+    else
+        # Validate user input
+        valid_input=true
+        for choice in "${CHOICES[@]}"; do
+            # Check if the input corresponds to a valid script index
+            if [[ ! "$choice" =~ ^[0-9]+$ || "$choice" -lt 1 || "$choice" -gt "${#SCRIPTS[@]}" ]]; then
+                valid_input=false
+                break
+            fi
+        done
+        
+        if [ "$valid_input" = true ]; then
+            # Run selected scripts
+            for choice in "${CHOICES[@]}"; do
+                index=$((choice - 1))
+                run_script "${SCRIPTS[$index]}"
+            done
+            break  # Exit the loop after running selected scripts
         else
-            echo "Invalid choice: $choice"
+            echo "Invalid choice(s). Please try again."
         fi
-    done
-fi
+    fi
+done
 
 cd ~/Arch_Install/
 
