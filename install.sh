@@ -42,7 +42,12 @@ fi
 
 echo "Yay is installed. Continuing with the script..."
 
-git clone https://github.com/G00380316/Arch_Install.git
+if [ -d "$HOME/Arch_Install" ]; then
+    echo "Arch_Install directory already exists. Pulling latest changes..."
+    cd "$HOME/Arch_Install" && git pull
+else
+    git clone https://github.com/G00380316/Arch_Install.git "$HOME/Arch_Install"
+fi
 
 if [ -d "Arch_Install" ]; then
     echo "Arch_Install directory cloned..."
@@ -101,7 +106,7 @@ if [[ "${CHOICES[*]}" =~ "0" ]]; then
     for script in "${SCRIPTS[@]}"; do
         run_script "$script"
     done
-elif [[ "${CHOICES}" != *"skip"* ]]; then
+elif [[ ! " ${CHOICES[*]} " =~ " skip " ]]; then
     for choice in "${CHOICES[@]}"; do
         index=$((choice - 1))
         if [ "$index" -ge 0 ] && [ "$index" -lt "${#SCRIPTS[@]}" ]; then
