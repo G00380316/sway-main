@@ -85,6 +85,8 @@ run_script() {
 # Loop to keep asking the user for valid input
 while true; do
     # Display Menu
+    echo " "
+    echo " "
     echo "Select scripts to run (multiple selections allowed, separate by space):"
     echo " "
     echo "skip) Skip"
