@@ -35,5 +35,5 @@ xdph="ON"
 ### Shell extension. Bash alternative
 ###-Install zsh, oh-my-zsh
 zsh="ON"
-### add Pokemon color scripts to terminal 
+### add Pokemon color scripts to terminal
 pokemon="ON"

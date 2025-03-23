@@ -32,7 +32,7 @@ prompt_installation_choice() {
     echo "Or ENTER to skip"
     read -r choice
 
-   case "$choice" in
+    case "$choice" in
         1)
             echo "Installing $wm_name with no customization..."
             ;;

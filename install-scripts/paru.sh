@@ -46,7 +46,7 @@ fi
   makepkg -si --noconfirm 2>&1 | tee -a "$LOG" || { printf "%s - Failed to install ${YELLOW}$pkg${RESET} from AUR\n" "${ERROR}"; exit 1; }
 
   # moving install logs in to Install-Logs directory
-  mv install*.log ../Install-Logs/ || true   
+  mv install*.log ../Install-Logs/ || true
   cd ..
 fi
 

@@ -101,7 +101,7 @@ bash ~/Arch_Install/install-scripts/nerdfonts.sh
 bash ~/Arch_Install/install-scripts/nwg-look
 
 # Install Rofi-Wayland
-sudo pacman -S --noconfirm rofi 
+sudo pacman -S --noconfirm rofi
 
 # Move custom configuration files
 rsync -a --progress ~/Arch_Install/configs/ ~/.config/

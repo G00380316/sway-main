@@ -67,13 +67,13 @@ if command -v zsh >/dev/null; then
   fi
   
   # Check if ~/.zshrc and .zprofile exists, create a backup, and copy the new configuration
-  if [ -f "$HOME/.zshrc" ]; then
-      cp -b "$HOME/.zshrc" "$HOME/.zshrc-backup" || true
-  fi
-
-  if [ -f "$HOME/.zprofile" ]; then
-      cp -b "$HOME/.zprofile" "$HOME/.zprofile-backup" || true
-  fi
+  # if [ -f "$HOME/.zshrc" ]; then
+  #     cp -b "$HOME/.zshrc" "$HOME/.zshrc-backup" || true
+  # fi
+  #
+  # if [ -f "$HOME/.zprofile" ]; then
+  #     cp -b "$HOME/.zprofile" "$HOME/.zprofile-backup" || true
+  # fi
   
   # Copying the preconfigured zsh themes and profile
   # cp -r 'assets/.zshrc' ~/

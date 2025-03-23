@@ -16,8 +16,8 @@ cd "$PARENT_DIR" || { echo "${ERROR} Failed to change directory to $PARENT_DIR";
 
 # Source the global functions script
 if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
-  echo "Failed to source Global_functions.sh"
-  exit 1
+    echo "Failed to source Global_functions.sh"
+    exit 1
 fi
 
 

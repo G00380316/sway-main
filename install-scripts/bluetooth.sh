@@ -28,8 +28,8 @@ LOG="Install-Logs/install-$(date +%d-%H%M%S)_bluetooth.log"
 
 # Bluetooth
 printf "${NOTE} Installing ${SKY_BLUE}Bluetooth${RESET} Packages...\n"
- for BLUE in "${blue[@]}"; do
-   install_package "$BLUE" "$LOG"
+  for BLUE in "${blue[@]}"; do
+    install_package "$BLUE" "$LOG"
   done
 
 printf " Activating ${YELLOW}Bluetooth${RESET} Services...\n"

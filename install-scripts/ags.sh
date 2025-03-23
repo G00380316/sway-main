@@ -12,13 +12,13 @@ ags=(
     npm
     meson
     glib2-devel
-    gjs 
-    gtk3 
-    gtk-layer-shell 
+    gjs
+    gtk3
+    gtk-layer-shell
     upower
-    networkmanager 
-    gobject-introspection 
-    libdbusmenu-gtk3 
+    networkmanager
+    gobject-introspection
+    libdbusmenu-gtk3
     libsoup3
 )
 
@@ -34,8 +34,8 @@ cd "$PARENT_DIR" || { echo "${ERROR} Failed to change directory to $PARENT_DIR";
 
 # Source the global functions script
 if ! source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"; then
-  echo "Failed to source Global_functions.sh"
-  exit 1
+    echo "Failed to source Global_functions.sh"
+    exit 1
 fi
 
 

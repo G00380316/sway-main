@@ -4,20 +4,20 @@
 # NOTE: These package check are only the essentials
 
 packages=(
-  cliphist
-  kvantum
-  rofi-wayland
-  imagemagick
-  swaync
-  swww
-  wallust
-  waybar
-  wl-clipboard
-  wlogout
-  kitty
-  hypridle
-  hyprlock
-  hyprland
+    cliphist
+    kvantum
+    rofi-wayland
+    imagemagick
+    swaync
+    swww
+    wallust
+    waybar
+    wl-clipboard
+    wlogout
+    kitty
+    hypridle
+    hyprlock
+    hyprland
 )
 
 # Local packages that should be in /usr/local/bin/

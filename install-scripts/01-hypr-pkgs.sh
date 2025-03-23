@@ -2,7 +2,7 @@
 
 # Hyprland Packages #
 
-# edit your packages desired here. 
+# edit your packages desired here.
 # WARNING! If you remove packages here, dotfiles may not work properly.
 # and also, ensure that packages are present in AUR and official Arch Repo
 

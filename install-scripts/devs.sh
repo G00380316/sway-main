@@ -59,8 +59,8 @@ echo "Installing JetBrains Nerd Font..."
 
     # Install Go
     echo "Installing Go..."
-    wget https://golang.org/dl/go1.20.5.linux-amd64.tar.gz
-    sudo tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
+    # wget https://golang.org/dl/go1.20.5.linux-amd64.tar.gz
+    # sudo tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
     echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.zshrc
     source ~/.zshrc
 

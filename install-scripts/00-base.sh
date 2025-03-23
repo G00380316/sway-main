@@ -2,7 +2,7 @@
 
 # base-devel + archlinux-keyring #
 
-base=( 
+base=(
   base-devel
   archlinux-keyring
 )

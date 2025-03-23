@@ -33,17 +33,17 @@ show_progress() {
                       "○○○○○●○○○○" "○○○○○○●○○○" "○○○○○○○●○○" "○○○○○○○○●○" "○○○○○○○○○●") 
     local i=0
 
-    tput civis 
+    tput civis
     printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ..." "$package_name"
 
     while ps -p $pid &> /dev/null; do
         printf "\r${NOTE} Installing ${YELLOW}%s${RESET} %s" "$package_name" "${spin_chars[i]}"
-        i=$(( (i + 1) % 10 ))  
-        sleep 0.3  
+        i=$(( (i + 1) % 10 ))
+        sleep 0.3
     done
 
     printf "\r${NOTE} Installing ${YELLOW}%s${RESET} ... Done!%-20s \n" "$package_name" ""
-    tput cnorm  
+    tput cnorm
 }
 
 
@@ -59,7 +59,7 @@ install_package_pacman() {
       stdbuf -oL sudo pacman -S --noconfirm "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     PID=$!
-    show_progress $PID "$1" 
+    show_progress $PID "$1"
 
     # Double check if package is installed
     if pacman -Q "$1" &>/dev/null ; then
@@ -80,7 +80,7 @@ install_package() {
       stdbuf -oL $ISAUR -S --noconfirm "$1" 2>&1
     ) >> "$LOG" 2>&1 &
     PID=$!
-    show_progress $PID "$1"  
+    show_progress $PID "$1"
     
     # Double check if package is installed
     if $ISAUR -Q "$1" &>> /dev/null ; then
@@ -98,7 +98,7 @@ install_package_f() {
     stdbuf -oL $ISAUR -S --noconfirm "$1" 2>&1
   ) >> "$LOG" 2>&1 &
   PID=$!
-  show_progress $PID "$1"  
+  show_progress $PID "$1"
 
   # Double check if package is installed
   if $ISAUR -Q "$1" &>> /dev/null ; then
