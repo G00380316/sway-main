@@ -15,10 +15,11 @@ if check_directory "$HOME/.local/share/icons/Colloid-Dark"; then
 else
     echo "Installing Colloid-icon-theme..."
     if check_directory "$HOME/Downloads"; then
-            echo "Downloads exists"
+        echo "Downloads exists"
     else
-            echo "Missing Downloads Directory...Making it now"
-            mkdir -p ~/Downloads/
+        echo "Missing Downloads Directory... Making it now"
+        mkdir -p ~/Downloads/
+    fi  # Missing fi added here
 
     cd ~/Downloads || exit
     if [ -d "Colloid-icon-theme" ]; then
@@ -47,5 +48,5 @@ else
     rm -rf ~/Downloads/Lavanda-gtk-theme
 fi
 
-
-bash ~/Arch_Install/colorschemes/update_gtk_settings.sh
+# Run the update_gtk_settings.sh script
+bash ./update_gtk_settings.sh

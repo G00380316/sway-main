@@ -148,12 +148,7 @@ cd ~/Arch_Install/
 if [ -f "./AniInstall.sh" ]; then
     read -p "Do you want to run Additional Install for Animations? (y/n): " choice
     if [[ "$choice" == "y" ]]; then
-        if [ -d "./wallpapers/" ]; then
-            cp -r ./wallpapers/ ~/Pictures/
-        fi
-        if [ -f "./wallpapers.sh" ]; then
-            bash ./wallpapers.sh
-        fi
+        bash ./wallpapers.sh
         bash ./AniInstall.sh
     fi
 fi

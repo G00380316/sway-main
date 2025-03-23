@@ -12,7 +12,7 @@ ORANGE="$(tput setaf 214)"
 WARNING="$(tput setaf 1)"
 YELLOW="$(tput setaf 3)"
 GREEN="$(tput setaf 2)"
-BLUE="$(tput setaf 4)"
+LUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
@@ -36,6 +36,14 @@ print_color() {
 
 # Set the name of the log file to include the current date and time
 LOG="Copy-Logs/install-$(date +%d-%H%M%S)_dotfiles.log"
+
+# wallpaper stuff
+mkdir -p $HOME/Pictures/wallpapers
+if cp -r ../wallpapers $HOME/Pictures/; then
+  echo "${OK} Some ${MAGENTA}wallpapers${RESET} copied successfully!" | tee -a "$LOG"
+else
+  echo "${ERROR} Failed to copy some ${YELLOW}wallpapers${RESET}" | tee -a "$LOG"
+fi
 
 # additional wallpapers
 printf "\n%.0s" {1..1}
@@ -75,3 +83,6 @@ while true; do
       ;;
   esac
 done
+
+# initialize wallust to avoid config error on hyprland
+wallust run -s $wallpaper 2>&1 | tee -a "$LOG"
