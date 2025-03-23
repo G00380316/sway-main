@@ -15,6 +15,7 @@ declare -A online_music=(
 ["YT - Thunder Rnb Mix 📹🎶"]="https://youtu.be/pWCUKN0RLYg?si=PrQVeA0npX1ekV7o"
 ["YT - R&B/Soul Mix Rnb Mix 📹🎶"]="https://www.youtube.com/watch?v=Mip7jRCvIRE"
 ["YT - Korean Drama OST 📹🎶"]="https://youtube.com/playlist?list=PLUge_o9AIFp4HuA-A3e3ZqENh63LuRRlQ"
+["YT - Korean Cafe Music 📹🎶"]="https://youtube.com/playlist?list=PLmtas71NLwTfioQrNKNYika4Tcao7CDbc&si=fAdYdhs1IGPkvUAa"
 ["YT - lofi hip hop radio beats 📹🎶"]="https://www.youtube.com/live/jfKfPfyJRdk?si=PnJIA9ErQIAw6-qd"
 ["YT - Relaxing Piano Jazz Music 🎹🎶"]="https://youtu.be/85UEqRat6E4?si=jXQL1Yp2VP_G6NSn"
 ["YT - Spontaneous Worship 🎶"]="https://www.youtube.com/watch?v=n5wkNJt3lGY&t=2653s"
