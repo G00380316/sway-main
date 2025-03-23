@@ -111,6 +111,24 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
 
     echo "Checking if SDDM is installed..."
 
+    echo "Building Weather Module Plugins..."
+
+    # Attempt to run Weather.py
+    if  python3 ~/.config/hypr/UserScripts/Weather.py; then
+        echo "Built Weather Module!"
+    else
+        echo "Error occurred. Trying to install pyquery..."
+        pip install pyquery
+
+        # Try running Weather.py again
+        if python3 ~/.config/hypr/UserScripts/Weather.py; then
+            echo "Built Weather Module!"
+        else
+            echo "Failed to build Weather Module. Please check your script."
+        fi
+    fi
+
+    echo "Checking if SDDM is installed..."
     if check_sddm; then
         echo "SDDM is already installed and enabled (recommended)."
         ask_enable_sddm
