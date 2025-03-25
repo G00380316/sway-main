@@ -144,6 +144,10 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
     # mkdir -p ~/Pictures/ScreenShots/
     # echo "Made new dirs!"
 
+    echo "Configuring FireFoxPWA"
+    cp -r ../Extra/firefoxpwa/ ~/.local/share/firefoxpwa/
+    echo "Configuring for FireFoxPWA is complete (Still in testing so may not work)"
+
     echo "Automation done!!! Everything should be installed and tidy!"
 else
     echo "Exiting without cleanup."

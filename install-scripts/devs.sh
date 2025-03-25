@@ -121,6 +121,8 @@ flatpak install flathub com.usebruno.Bruno -y
 flatpak install flathub org.onlyoffice.desktopeditors -y
 flatpak install flathub org.gnome.Boxes -y
 flatpak install flathub info.febvre.Komikku -y
+flatpak install flathub io.github.mezoahmedii.Picker -y
+flatpak install flathub dev.edfloreshz.Tasks -y
 # Important we use flatseal to manager our flatpak apps (Cuase sometimes they don't render properly) [Issue was scaling make sure you dont change your scale from 1]
 flatpak install flatseal -y
 
