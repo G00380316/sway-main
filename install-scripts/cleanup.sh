@@ -145,8 +145,9 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
     # echo "Made new dirs!"
 
     echo "Configuring FireFoxPWA"
-    cp -r ../Extra/firefoxpwa/ ~/.local/share/firefoxpwa/
-    echo "Configuring for FireFoxPWA is complete (Still in testing so may not work)"
+    cp -r ~/Arch_Install/Extra/firefoxpwa/ ~/.local/share/
+    echo "Configuring for FireFoxPWA is complete (Please enable plugins in the Apps {Youtube , Youtube Music and Timetree})"
+    echo "For the best experience Shortkeys to open them should be working straight away!!"
 
     echo "Automation done!!! Everything should be installed and tidy!"
 else
