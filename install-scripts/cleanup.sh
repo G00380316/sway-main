@@ -149,6 +149,9 @@ if [[ "$response" =~ ^[Yy]$ ]]; then
     echo "Configuring for FireFoxPWA is complete (Please enable plugins in the Apps {Youtube , Youtube Music and Timetree})"
     echo "For the best experience Shortkeys to open them should be working straight away!!"
 
+    # pacman -Qe
+    # grep "installed" /var/log/pacman.log | tail -n 20
+
     echo "Automation done!!! Everything should be installed and tidy!"
 else
     echo "Exiting without cleanup."

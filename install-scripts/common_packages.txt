@@ -35,3 +35,12 @@ pipewire-pulse
 pipewire-jack
 rsync
 bluetui
+parted 
+gptfdisk 
+dosfstools 
+exfatprogs 
+ntfs-3g 
+util-linux 
+e2fsprogs
+usbutils
+pv

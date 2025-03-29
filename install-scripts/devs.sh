@@ -107,6 +107,9 @@ sudo pacman -S --noconfirm neovim
 # Productivity
 sudo pacman -S --noconfirm zoxide tmux
 
+# Audio
+sudo pacman -S --noconfirm easyeffects lsp-plugins ladspa calf
+
 # Install Flatpak and Obsidian,Vesktop,Postman,DbGate,...etc
 echo "Installing Flatpak and Obsidian..."
 sudo pacman -S --noconfirm flatpak
